@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        alert('alallaa')
+        let array = ['jakarta','bsd','bandung']
+        let hapus = prompt(`${array.forEach()} ketik kota yang ingin dihapus`)
+        hapus(hapus)
+        alert(array)
+        function hapus(hapus) {
+            for (i=0;i<array.length;i++){
+                if (array[i]==hapus)
+                {
+                    array[i] = ''
+                }
+            }
+        return array       
+    }
+    </script>
+</body>
+</html>

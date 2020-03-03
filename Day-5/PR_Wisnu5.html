@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+        var dataBuah = [{nama: 'Jeruk', harga : 1000, stok:5,totalInputBuah : 0},
+                        {nama: 'Mangga', harga : 1000, stok:5,totalInputBuah : 0},
+                        {nama: 'Leci', harga : 1000, stok:5,totalInputBuah : 0}
+                        ]
+        
+        var beliBuah = [0,0,0]; 
+        var pilihBuah //variabel untuk menampung pilihan menu
+        var inputBuah = [0,0,0]
+        var bayar = 0
+        var terimaBayar = 0
+        var cekKondisiBeli = true
+        var totalHarga = 0
+        var listStokHarga = ''
+        var tambahBuah //untuk kondisi saat mau tambah buah
+        
+        var kePembayaran =0 //indikator loop ke pembayaran
+    
+        var beliLagi = true;
+        var cekStok = true
+        while (beliLagi || cekStok) {
+            beliBuah = [0,0,0]; //mereset jumlah inputan jika ingin belanja lagi
+            var kePembayaran =0 //mereset indikator supaya confirm tambah belanjaan menyala lagi jika mengulangi transaksi
+            totalHarga,bayar,terimaBayar = 0 //mereset total harga dan uang yang dibayarkan jika program mengulang
+                if (cekStok==false)
+                {
+                    alert('Maaf Stok Sudah Habis')
+                    break;
+                }
+                var listStokHarga = ''
+                for (i = 0;i<namaBuah.length;i++)
+                {
+                    listStokHarga += + (i+1) +'. '+namaBuah[i] + "Harga =" +hargaBuah[i]+ "Jumlah Stok" +stokBuah[i] +"\n"
+                }
+    
+               
+        do{
+            tambahBuah = true
+            pilihBuah=prompt(listStokHarga +'4. Cek Out ke Pembayaran'+'\n'+'Masukkan Angka Buah yang dipilih!!')          
+            switch(pilihBuah) {
+                
+            case  '1': 
+                 //===========beli buah Jeruk=======//
+                do {
+                     inputBuah[0] = prompt('Jumlah Jeruk =') *1
+                    if (inputBuah[0]>stokBuah[0]){
+                        cekKondisiBeli=true
+                        alert('Input melebihi stok, ulangi input anda')
+                    }
+                    else {
+                        beliBuah[0]+=inputBuah[0]
+                        cekKondisiBeli=false
+                    }
+                }
+                while (cekKondisiBeli)
+                break;
+             case '2': 
+             //==============beli buah Mangga==============//
+                do {
+                    inputBuah[1] = prompt('Jumlah Mangga =') *1
+                    if (inputBuah[1]>stokBuah[1]){
+                        cekKondisiBeli=true
+                        alert('Input melebihi stok, ulangi input anda')
+                    }
+                    else {
+                        cekKondisiBeli=false
+                        beliBuah[1]+=inputBuah[1]
+                        if (beliBuah[1]>stokBuah[1]) {
+                            cekKondisiBeli=true
+                            beliBuah[1] =0
+                            alert('Anda membeli buah kebanyakan, ulangi lagi!!')
+                        }
+                    }
+                }
+                while (cekKondisiBeli)
+                 break;
+                 //============================//
+             case '3': 
+                 //==============beli buah Leci==============//
+                 do {
+                    inputBuah[2] = prompt('Jumlah Leci =') *1
+                    if (inputBuah[2]>stokBuah[2]){
+                        cekKondisiBeli=true
+                        alert('Input melebihi stok, ulangi input anda')
+                    }
+                    else {
+                        cekKondisiBeli=false
+                        beliBuah[2]+=inputBuah[2]
+                    }
+                }
+                while (cekKondisiBeli)
+                 break;
+                  //============================//
+            case '4':
+            
+                kePembayaran=1;
+                tambahBuah = false
+                totalHarga = 0
+                break;
+             default:
+                alert('Input anda salah, ulangi input!!!')
+                 continue;
+            } 
+            if (kePembayaran !=1){
+                tambahBuah = confirm('Ingin tambah Belanjaan??')
+            }
+            
+        }    
+        while (tambahBuah) //ini do while untuk tambah belanjaan
+                totalHarga =    (beliBuah[0]*hargaBuah[0]) + 
+                                (beliBuah[1]*hargaBuah[1]) + 
+                                (beliBuah[2]*hargaBuah[2]) 
+                alert('Total harga = ' + totalHarga)
+    
+               
+                kondisiBayar = true
+    
+                //proses bayar tagihan
+                while (kondisiBayar && totalHarga !=0)
+                {
+                bayar = prompt('Masukkan uang anda = ') *1
+                    terimaBayar += bayar
+                    if (terimaBayar<totalHarga) {
+                       
+                        alert('Uang anda kurang '+(totalHarga-terimaBayar)+' silahkan bayar lagi')  
+                        
+                        if (terimaBayar>=totalHarga){
+                            kondisiBayar = false
+                         }
+                        else{
+                            kondisiBayar = true
+                         }
+                      
+                    }
+                    else{
+                        kondisiBayar = false
+                    }
+                    
+                }
+    
+             //kondisi dimana uang yang dibayarkan sudah sesuai
+                if (terimaBayar>totalHarga)
+                {   
+                    alert('Kembalian anda= \n' +(bayar-totalHarga)+'\n Terima Kasih')
+                }
+                else if (totalHarga == 0)
+                {
+                    alert('Anda tidak membeli apapun')
+                }
+                else if (totalHarga == terimaBayar)
+                {   
+                    alert('Terima Kasih uang anda pas')
+                }
+           
+                //konfirmasi mau beli lagi?
+                beliLagi = confirm('Mau Beli lagi? ')
+            
+                stokBuah[0] -= beliBuah[0];
+                stokBuah[1] -= beliBuah[1];
+                stokBuah[2] -= beliBuah[2];
+                
+                //cek sisa stok
+                if (stokBuah[0] != 0 || stokBuah[1] != 0 || stokBuah[2] != 0){
+                   var cekStok = true
+                }
+                else {
+                    cekStok = false
+                }      
+            }
+        </script> 
+</body>
+</html>

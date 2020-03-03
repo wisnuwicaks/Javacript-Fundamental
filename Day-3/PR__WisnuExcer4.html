@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script >
+     
+     
+            let hargaJeruk = 1000
+            let hargaMangga = 1000
+            let hargaLeci =  1000
+            let hargaApel = 1000
+
+            let stokJeruk = 5
+            let stokMangga = 5
+            let stokLeci = 5
+            let stokApel = 5
+
+            let beliLagi
+            //var cekStok
+    do {
+             if (cekStok==false)
+            {
+                alert('Maaf Stok Sudah Habis')
+                break;
+            }
+            alert(
+                'Harga Jeruk    =' +hargaJeruk+'\n'+
+                'Harga Mangga   =' +hargaMangga+'\n'+
+                'Harga Leci     =' +hargaLeci+'\n'+
+                'Harga Apel     =' +hargaApel
+                )
+
+            alert('Stok Jeruk= ' +stokJeruk+'\n'+ 
+                'Stok Mangga= ' +stokMangga+'\n'+ 
+                'Stok Leci= ' +stokLeci+'\n'+ 
+                'Stok Apel= ' +stokApel+'\n'
+                )
+         
+           var cekKondisiBeli = true
+            do {
+                var beliJeruk = prompt('Jumlah Jeruk =') *1
+                if (beliJeruk>stokJeruk){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+          
+            do {
+                var beliMangga = prompt('Jumlah Mangga =') *1
+                if (beliMangga>stokMangga){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+
+            do {
+                var beliLeci = prompt('Jumlah Leci =') *1
+                if (beliLeci>stokLeci){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+            
+            do {
+                var beliApel = prompt('Jumlah Apel =') *1
+                if (beliApel>stokApel){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+
+
+            let totalHarga = (beliJeruk*hargaJeruk) + (beliMangga*hargaMangga) + (beliLeci*hargaLeci) + (beliApel*hargaApel)
+            alert('Total harga = ' + totalHarga)
+
+           // let bayar 
+            kondisiBayar = true
+            //proses bayar tagihan
+            do{
+           var bayar = prompt('Masukkan uang anda = ')
+                // if (bayar>totalHarga)
+                // {
+                //     kondisiBayar = false
+                // }
+                if (bayar<totalHarga)
+                {
+                    alert('Uang anda kurang, ulangi bayar lagi')
+                    kondisiBayar = true
+                }
+                else{
+                    kondisiBayar = false
+                }
+            }
+            while (kondisiBayar)
+
+         //kondisi dimana uang yang dibayarkan sudah sesuai
+            if (totalHarga<bayar)
+            {   
+                alert('Kembalian anda= \n' +(bayar-totalHarga)+'\n Terima Kasih')
+            }
+            else if (totalHarga == 0)
+            {
+                alert('Anda tidak membeli apapun')
+            }
+            else if (totalHarga == bayar)
+            {   
+                alert('Terima Kasih uang anda pas')
+            }
+              
+          
+            //konfirmasi mau beli lagi?
+            beliLagi = confirm('Mau Beli lagi? ')
+            
+            stokJeruk = stokJeruk-beliJeruk;
+            stokMangga = stokMangga-beliMangga;
+            stokLeci = stokLeci-beliLeci;
+            stokApel = stokApel-beliApel;
+
+            //cek sisa stok
+            
+            if (stokJeruk != 0 || stokMangga != 0 || stokLeci != 0 || stokApel != 0){
+               var cekStok = true
+            }
+            else {
+                cekStok = false
+            }      
+        }
+    while(beliLagi)
+   
+    </script> 
+</body>
+</html>

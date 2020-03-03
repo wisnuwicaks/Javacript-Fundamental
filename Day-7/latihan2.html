@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // let array = ['jakarta','bsd','bandung']
+    // let a = prompt(array)
+    // function hapus(a) {
+    //     for (let i=0;i<array.length;i++){
+    //         if (array[i]==a)
+    //         {
+    //             array.splice(i,1)
+    //         }
+    //     }   
+    // }
+    // hapus(a)
+    // alert(array)
+
+    // let array = ['jakarta','bsd','bandung']
+    // let input = prompt(array)
+  
+    // hasil = repIndexOf(input)
+    // alert(hasil)
+
+    // function repIndexOf(string){
+          
+    // for(let i=0;i<array.length;i++){
+    //     if(array[i]== input)
+    //     {
+    //         return i
+    //     }
+        
+    //         return -1
+    // }
+    // }
+
+
+    // let input =prompt(`Lama parkir anda`) 
+    // let hasil = 0
+    // function uangParkir(input){
+    //     if (input<2)
+    //     {
+    //         hasil = 2000
+    //     }
+    //     else{
+    //     tarif 2jam pertama =2000
+    //     stelah 2 jam tarif 500 
+    //     }
+    // }
+
+
+let array = [2,4,3,5,10,20]
+
+sortingAngka(array)
+
+function sortingAngka(array){
+var temp 
+   for(let a=0;a<array.length;a++){
+        for(i=0;i<array.length;i++){
+            if (array[i] > array[i+1])
+            {
+                temp = array[i]
+                array[i] = array[i+1]
+                array[i+1] = temp
+            }
+        }
+   }
+   alert(array[array.length-1]-array[0])
+}
+// alert(sortingAngka())
+    </script>
+</body>
+</html>

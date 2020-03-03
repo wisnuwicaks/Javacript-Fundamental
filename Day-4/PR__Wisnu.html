@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script >
+     
+    var hargaBuah = [1000,1000,1000,1000];
+    var stokBuah = [5,5,5,5];
+    var beliBuah = ['','','',''];
+    
+
+    var kondisiBeliLagi = 1;
+    var totalHarga = 0
+  
+    kondisiStok=true
+    
+    while (kondisiBeliLagi && kondisiStok)
+    {
+        tampilHargaDanStok();
+        inputJumlahBuah();
+        totalHarga = (beliBuah[0]*hargaBuah[0]) + 
+                                (beliBuah[1]*hargaBuah[1]) + 
+                                (beliBuah[2]*hargaBuah[2]) + 
+                                (beliBuah[3]*hargaBuah[3])
+        alert('Total harga = ' + totalHarga)
+        pembayaran();
+        selesaiTransaksi();
+
+        function tampilHargaDanStok(){
+            alert(
+                'Harga Jeruk    =' +hargaBuah[0]+'\n'+
+                'Harga Mangga   =' +hargaBuah[1]+'\n'+
+                'Harga Leci     =' +hargaBuah[2]+'\n'+
+                'Harga Apel     =' +hargaBuah[3]
+                )
+
+            alert('Stok Jeruk= ' +stokBuah[0]+'\n'+ 
+                'Stok Mangga= ' +stokBuah[1]+'\n'+ 
+                'Stok Leci= ' +stokBuah[2]+'\n'+ 
+                'Stok Apel= ' +stokBuah[3]+'\n'
+                )
+                return
+        }
+
+        function inputJumlahBuah(){
+           var cekKondisiBeli = true
+
+           //beli buah Jeruk
+            do {
+                beliBuah[0] = prompt('Jumlah Jeruk =') *1
+                if (beliBuah[0]>stokBuah[0]){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+          
+            //beli buah Mangga
+            do {
+                beliBuah[1] = prompt('Jumlah Mangga =') *1
+                if (beliBuah[1]>stokBuah[1]){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+
+            //beli buah Leci
+            do {
+                beliBuah[2] = prompt('Jumlah Leci =') *1
+                if (beliBuah[2]>stokBuah[2]){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+            
+            //beli buah Apel
+            do {
+                beliBuah[3] = prompt('Jumlah Apel =') *1
+                if (beliBuah[3]>stokBuah[3]){
+                    cekKondisiBeli=true
+                    alert('Input melebihi stok, ulangi input anda')
+                }
+                else {
+                    cekKondisiBeli=false
+                }
+            }
+            while (cekKondisiBeli)
+              
+            return
+        }
+
+        function pembayaran(){
+           
+            kondisiBayar = true
+
+            //proses bayar tagihan
+            do{
+            var bayar = prompt('Masukkan uang anda = ')
+                if (bayar<totalHarga)
+                {
+                    alert('Uang anda kurang, ulangi bayar lagi')
+                    kondisiBayar = true
+                }
+                else{
+                    kondisiBayar = false
+                }
+            }
+            while (kondisiBayar)
+
+         //kondisi dimana uang yang dibayarkan sudah sesuai
+            if (totalHarga<bayar)
+            {   
+                alert('Kembalian anda= \n' +(bayar-totalHarga)+'\n Terima Kasih')
+            }
+            else if (totalHarga == 0)
+            {
+                alert('Anda tidak membeli apapun')
+            }
+            else if (totalHarga == bayar)
+            {   
+                alert('Terima Kasih uang anda pas')
+            }  
+        }
+       
+        function selesaiTransaksi(){
+            stokBuah[0] -= beliBuah[0];
+            stokBuah[1] -= beliBuah[1];
+            stokBuah[2] -= beliBuah[2];
+            stokBuah[3] -= beliBuah[3];
+            
+            kondisiBeliLagi = confirm('Mau Beli lagi? ')
+
+            if (stokBuah[0]>0 || stokBuah[1]>0 || stokBuah[2] >0 || stokBuah[3] >0) {
+                kondisiStok = true
+            }
+            else{
+                kondisiStok = false
+                alert('Maaf stok buah sudah habis')
+            }
+
+             
+        }
+      
+    }
+    </script> 
+</body>
+</html>

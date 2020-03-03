@@ -1,0 +1,6 @@
+- lanjut program lalu
+- barang dan stok masih fix 
+- user dapat ulangi jika salah input
+- jika kurang bayar dapat ulangi bayar
+- setelah selesai transaksi mau ulangi atau tidak
+- jika mau beli lagi stoknya dapat berkurang

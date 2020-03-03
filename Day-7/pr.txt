@@ -1,0 +1,7 @@
+- menu awal : admin(add,delete),user,exit
+- user : pilihan jenis barang yang ingin dibeli 
+	(
+	clothing >> size(s,m,L), size hanya diiput user
+	hp >>warranty , confirm : hp ini tidak ada garansinya loh mau ttep beli?
+	buah >> expired date (dd-mm-yy),tampilkan buah ini sudah expired 
+	)

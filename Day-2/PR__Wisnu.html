@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script >
+
+
+            let jeruk = 1000
+            let mangga = 1000
+            let leci =  1000
+            let apel = 1000
+
+            let stokJeruk = 5
+            let stokMangga = 5
+            let stokLeci = 5
+            let stokApel = 5
+    
+            alert(
+                'Harga Jeruk    =' +jeruk+'\n'+
+                'Harga Mangga   =' +mangga+'\n'+
+                'Harga Leci     =' +leci+'\n'+
+                'Harga Apel     =' +apel
+                )
+
+            alert('Stok Jeruk= ' +stokJeruk+'\n'+ 
+                'Stok Mangga= ' +stokMangga+'\n'+ 
+                'Stok Leci= ' +stokLeci+'\n'+ 
+                'Stok Apel= ' +stokApel+'\n'
+                )
+
+            let beliJeruk = prompt('Jumlah Jeruk =') *1
+            let beliMangga = prompt('Jumlah Mangga =') *1
+            let beliLeci = prompt('Jumlah Leci =') *1
+            let beliApel = prompt('Jumlah Apel =') *1
+
+            if (beliJeruk>stokJeruk || beliMangga>stokMangga || beliLeci>stokLeci || beliApel>stokApel )
+            {
+                alert('Salah satu stok tidak mencukupi')
+            }
+            
+            else{
+                    let totalHarga = (beliJeruk*jeruk) + (beliMangga*mangga) + (beliLeci*leci) + (beliApel*apel)
+                    alert('Total harga = ' + totalHarga)
+
+                    let bayar = prompt('Masukkan uang anda = ')
+
+                    if (totalHarga>bayar)
+                    {   
+                        alert('Uang anda kurang')
+                    }
+                    else if (totalHarga<bayar)
+                    {   
+                        alert('Kembalian anda= \n' +(bayar-totalHarga)+'\n Terima Kasih')
+                    }
+                    else if (totalHarga == 0)
+                    {
+                        alert('Anda tidak membeli apapun')
+                    }
+                    else if (totalHarga==bayar)
+                    {   
+                        alert('Terima Kasih uang anda pas')
+                    }
+                }
+    //while((stokJeruk != 0) || (stokMangga !=0) || (stokLeci !=0) || (stokApel != 0))
+   
+    </script> 
+</body>
+</html>
