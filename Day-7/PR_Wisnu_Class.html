@@ -84,7 +84,6 @@
           } else if (inputUserMenu == arrayTampung.length + 2) {
             calculateTotalPrice();
             isRepeat = confirm("Belanja lagi ga?");
-            userCart = ""
             for(i=0;i<arrItems.length;i++){
               arrItems[i].stok-=arrItems[i].qty
             }
@@ -253,7 +252,6 @@
         isRepeat = true
         break
         default :
-        isRepeat = true
         }
    
       } 

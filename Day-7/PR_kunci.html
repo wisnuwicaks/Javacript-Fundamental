@@ -36,7 +36,7 @@
     let totalPrice;
     let userPayment;
     let cartCount;
-    let userCart = "";
+    let userCart;
     let userMenu
     let newItem;
 
@@ -59,6 +59,7 @@
 
     function showCart() {
       userCart = "";
+     
       cartCount = 0;
       for (let i = 0; i < arrItems.length; i++) {
         if (arrItems[i].qty > 0) {
@@ -79,7 +80,7 @@
         totalPrice += arrItems[i].qty * arrItems[i].harga;
       }
 
-      userPayment = prompt(`Total harga = ${totalPrice}`);
+         userPayment= prompt(`Total harga = ${totalPrice}`);
 
       if (userPayment > totalPrice) {
         alert(`Kembalian anda ${userPayment - totalPrice}`);
@@ -123,23 +124,32 @@
     }
 
     do {
+     
       let inputMainMenu = prompt(`Login sebagai\n1. User\n2. Admin`);
 
       if (inputMainMenu == 1) {
         do {
+          
           // User Menu
+          userCart = ''
           userMenu = true
           inputUserMenu = prompt(showMenu(userMenu));
           inputUserMenuIndex = inputUserMenu - 1;
 
           if (inputUserMenu == arrItems.length + 1) {
+           
             showCart();
+          
           } else if (inputUserMenu == arrItems.length + 2) {
             calculateTotalPrice();
+            arrItems[0].qty =0
+            arrItems[1].qty =0
+            arrItems[2].qty =0
           } else if (inputUserMenu < arrItems.length + 1) {
             addToCart(inputUserMenuIndex);
           }
           isRepeat = confirm("Belanja lagi ga?");
+       
         } while (isRepeat);
       } else if (inputMainMenu == 2) {
         do {
