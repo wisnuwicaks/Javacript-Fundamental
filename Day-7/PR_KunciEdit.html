@@ -46,9 +46,9 @@
                     new Buah('Mangga',1000,5,0,'10-10-2020'),  
                     new Baju('Zalora',1000,5,0,'L'),
                     new Baju('Indomaret',1000,5,0,'L'),
-                    new HP('Xiaomi',1000,5,0,true),
+                    new HP('Xiaomi',1000,5,0,false),
                     new HP('Samsung',1000,5,0,true),
-                    new HP('Nokia',1000,5,0,true)
+                    new HP('Nokia',1000,5,0,false)
                     ]
     // alert(arrItems[0].constructor.name)
 
@@ -63,7 +63,7 @@
     let userCart = "";
     let userMenu
     let newItem;
-    let produkTerpilih;
+    let produkTerpilih = '';
     let menu = "";
     let arrayTampung =[]
 
@@ -97,6 +97,7 @@
 
     function showMenu(userMenu) {
       menu = "";
+      let garansi = ''
       arrayTampung =[]
       if (produkTerpilih==''){
         for(i=0;i<arrItems.length;i++){
@@ -110,8 +111,23 @@
           }
         } 
       for (let i = 0; i < arrayTampung.length; i++) {
-      menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} IDR ${arrItems[arrayTampung[i]].harga}/pcs (${arrItems[arrayTampung[i]].stok} items ready)\n`;
-        
+      // menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} IDR ${arrItems[arrayTampung[i]].harga}/pcs (${arrItems[arrayTampung[i]].stok} items ready)\n`;
+        if (produkTerpilih=='HP'){
+          if(arrItems[arrayTampung[i]].waranty==false){
+            garansi = 'Tidak'
+          }
+          else{garansi = 'Ya'}
+          menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} Rp. ${arrItems[arrayTampung[i]].harga}/pcs garansi : ${garansi} stok:${arrItems[arrayTampung[i]].stok}\n`;
+        }
+        else if(produkTerpilih=='Buah'){
+          menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} Rp. ${arrItems[arrayTampung[i]].harga}/pcs expired : ${arrItems[arrayTampung[i]].expired} stok:${arrItems[arrayTampung[i]].stok}\n`;
+        }
+        else if(produkTerpilih=='Baju'){
+          menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} Rp. ${arrItems[arrayTampung[i]].harga}/pcs size : ${arrItems[arrayTampung[i]].size} stok:${arrItems[arrayTampung[i]].stok}\n`;
+        }
+        else if (produkTerpilih==''){
+          menu += `${i+1}. ${arrItems[arrayTampung[i]].nama} Rp. ${arrItems[arrayTampung[i]].harga}/pcs stok:${arrItems[arrayTampung[i]].stok}\n`;
+        }
       }
       if(userMenu){
       menu += `${arrayTampung.length + 1}. Cart\n`;
@@ -217,41 +233,43 @@
         do {
           // Admin Menu
           inputAdminMenu = prompt(
-            `1. Add Item\n2. Delete Item\n3. Show Menu\n4. Logout`
+            `1. Add Item\n2. Delete Item\n3. Show Product Available \n4. Logout`
           );
 
-          if (inputAdminMenu == 1) {
+          if (inputAdminMenu == '1') {
             let tambahApa = prompt(`Ingin Tambah produk apa :\n1.HP\n2.Buah\n3.Baju `)
             let newItemName = prompt("Masukkan nama item");
             let newItemPrice = parseInt(prompt("Masukkan harga item"));
             let newItemStock = parseInt(prompt("Masukkan jumlah stock item"));
 
-            if  (tambahApa='1'){
+            if  (tambahApa=='1'){
               arrItems.push(new HP(newItemName,newItemPrice,newItemStock,0,true))
             // arrItems.push(
             //   createNewItem(newItemName, newItemPrice, newItemStock)
             // )
             }
-            else if(tambahApa='2'){
-              arrItems.push(new Buah(newItemName,newItemPrice,newItemStock,0,'10-10-2020'))
+            else if(tambahApa=='2'){
+              let newItemExpired = prompt(`Masukkan tanggal expired : \n (dd-mm-yyyy)`);
+              arrItems.push(new Buah(newItemName,newItemPrice,newItemStock,0,newItemExpired))
             }
-            else if(tambahApa='3'){
+            else if(tambahApa=='3'){
               arrItems.push(new Baju(newItemName,newItemPrice,newItemStock,0,'L'))
             }
             else{
               break
             }
             isRepeat = true
-          } else if (inputAdminMenu == 2) {
+          } else if (inputAdminMenu == '2') {
             userMenu=false
             let deleteItemIndex = prompt(`${showMenu(false)}Masukkan produk yang ingin dihapus :`);
             deleteItem(deleteItemIndex)
             isRepeat = true
 
-          } else if (inputAdminMenu == 3) {
+          } else if (inputAdminMenu == '3') {
               userMenu=false
               alert(showMenu(userMenu));
-          } else if (inputAdminMenu == 4) {
+              isRepeat = true
+          } else if (inputAdminMenu == '4') {
             isRepeat = false
           }
         } while (isRepeat);

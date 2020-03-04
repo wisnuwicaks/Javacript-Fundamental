@@ -33,21 +33,21 @@
 // //var alpArray = 'abcdefghijklmnopqrstuvwxyz'.split('')
 // console.log(alphaValue('def'))
 
-class Product {
-    constructor(nama,harga,stok){
-    this.nama=nama
-    this.harga=harga
-    this.stok=stok
-    }
-}
+// class Product {
+//     constructor(nama,harga,stok){
+//     this.nama=nama
+//     this.harga=harga
+//     this.stok=stok
+//     }
+// }
 
-let arr = [ new Product('apel',2000,20),
-            new Product('mangga',3000,20),
-            new Product('jeruk',4000,20),
-            new Product('nangka',5000,20),
-            new Product('rambutan',6000,20),
-            new Product('salak',7000,20)          
-            ]
+// let arr = [ new Product('apel',2000,20),
+//             new Product('mangga',3000,20),
+//             new Product('jeruk',4000,20),
+//             new Product('nangka',5000,20),
+//             new Product('rambutan',6000,20),
+//             new Product('salak',7000,20)          
+//             ]
 
 // const search =(str) => {
 //     let hasil = []
@@ -72,21 +72,21 @@ let arr = [ new Product('apel',2000,20),
 //     return hasil
 //}
 
-const search =(str) => {
-    return arr.filter((value) => value.nama.includes(str))
-}
+// const search =(str) => {
+//     return arr.filter((value) => value.nama.includes(str))
+// }
 
-const minMax =(min,max) => {
-    return arr.filter((value) => value.harga>=min && value.harga<=max)
-}
+// const minMax =(min,max) => {
+//     return arr.filter((value) => value.harga>=min && value.harga<=max)
+// }
 
-arrJumlah = [-7,5,-6,1,6]
-const terimaArray = (arrJumlah) => {
-    let positif =[]
-    let negatif =[]
-    let hasil = [0,0]
-    positif = arrJumlah.filter((value) => value>0 )
-    negatif = arrJumlah.filter((value) => value<0 )
+// arrJumlah = [-7,5,-6,1,6]
+// const terimaArray = (arrJumlah) => {
+//     let positif =[]
+//     let negatif =[]
+//     let hasil = [0,0]
+//     positif = arrJumlah.filter((value) => value>0 )
+//     negatif = arrJumlah.filter((value) => value<0 )
 
     // for(i=0;i<positif.length;i++)
     // {
@@ -97,9 +97,16 @@ const terimaArray = (arrJumlah) => {
     //     hasil[1] +=negatif[i]
     // }
 
-    return hasil
-}
+//     return hasil
+// }
 //console.log(minMax(2000,7000))
 //console.log(search('mangga'))
 
-console.log(terimaArray(arrJumlah))
+// console.log(terimaArray(arrJumlah))
+
+let tgl = '10-06-2020'
+let arrTgl = tgl.split('-')
+let hasil = new Date(arrTgl[2],arrTgl[1]-1,arrTgl[0])
+
+let a = new Date()
+console.log(hasil)
