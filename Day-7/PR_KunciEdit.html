@@ -77,14 +77,19 @@
           //inputUserMenuIndex = inputUserMenu - 1;
           inputUserMenuIndex = arrayTampung[inputUserMenu-1];
 
-          if (inputUserMenu == arrItems.length + 1) {
+          if (inputUserMenu == arrayTampung.length + 1) {
             showCart();
           } else if (inputUserMenu == arrayTampung.length + 2) {
             calculateTotalPrice();
             isRepeat = confirm("Belanja lagi ga?");
+            for(i=0;i<arrItems.length;i++){
+              arrItems[i].stok-=arrItems[i].qty
+            }
           } else if (inputUserMenu < arrayTampung.length + 1) {
             addToCart(inputUserMenuIndex);
             isRepeat =true
+          } else if (inputUserMenu == arrayTampung.length + 3) {
+            isRepeat =false
           }
         } while (isRepeat);
     }
@@ -111,6 +116,7 @@
       if(userMenu){
       menu += `${arrayTampung.length + 1}. Cart\n`;
       menu += `${arrayTampung.length + 2}. Checkout\n`;
+      menu += `${arrayTampung.length + 3}. Back\n`;
       }
       return menu;
     }
@@ -118,17 +124,17 @@
     function showCart() {
       userCart = "";
       cartCount = 0;
-      for (let i = 0; i < array.length; i++) {
-        if (arrItems[arrayTampung[i]].qty > 0) {
-          userCart += `${arrItems[arrayTampung[i]].nama} ${arrItems[arrayTampung[i]].qty} items in cart\n`;
+      for (let i = 0; i < arrItems.length; i++) {
+        if (arrItems[i].qty > 0) {
+          userCart += `${arrItems[i].nama} ${arrItems[i].qty} items in cart\n`;
         }
        
       }
 
-      if (userCart) {
-        alert(userCart);
+      if (userCart=='') {
+        alert('cart anda kosong');
       } else {
-        alert("Cart anda kosong");
+        alert(userCart);
       }
     }
 
