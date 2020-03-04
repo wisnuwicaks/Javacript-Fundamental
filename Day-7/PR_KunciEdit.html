@@ -86,6 +86,7 @@
               arrItems[i].stok-=arrItems[i].qty
             }
           } else if (inputUserMenu < arrayTampung.length + 1) {
+            konfirmasiExpiredWaranty(inputUserMenuIndex)
             addToCart(inputUserMenuIndex);
             isRepeat =true
           } else if (inputUserMenu == arrayTampung.length + 3) {
@@ -94,6 +95,14 @@
         } while (isRepeat);
     }
 
+    function konfirmasiExpiredWaranty(inputUserMenuIndex){
+      for(i=0;i<arrItems.length;i++){
+        if (arrItems[inputUserMenuIndex].waranty==false){
+          alert(`Anda akan membeli handphone tidak bergaransi`)
+          break
+        }
+      }
+    }
 
     function showMenu(userMenu) {
       menu = "";
