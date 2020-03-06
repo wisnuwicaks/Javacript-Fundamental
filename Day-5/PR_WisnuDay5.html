@@ -6,7 +6,9 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <p id="1"> 
+
+  </p>
 </body>
 <script>
 
@@ -36,14 +38,16 @@ var dataBuah = [{nama: 'Jeruk', harga : 1000, stok:5,totalInputBuah : 0},
 
     for (let i = 0; i < dataBuah.length; i++) {
         //for (j=0;j<4;j++)
-        menu += `${i + 1}. ${dataBuah[i].nama} IDR ${dataBuah[i].harga}/pcs (${dataBuah[i].stok} items in stock)\n`
+        menu += `${i + 1}. ${dataBuah[i].nama} IDR ${dataBuah[i].harga}/pcs (${dataBuah[i].stok} items in stock)\n <br>`
     }
+    
 
     menu += `${dataBuah.length + 1}. Checkout ke Pembayaran \n`
     menu += `${dataBuah.length + 2}. Tambah pilihan buah`
 
     //===============untuk menampung inputan user pada menu yang tersedia================//
-    inputUserMenu = prompt(menu)//angka yang didapat sesuai menu tertulis
+   // inputUserMenu = prompt(menu)//angka yang didapat sesuai menu tertulis
+    document.getElementById("1").innerHTML = menu
     inputUserMenuIndex = inputUserMenu - 1 //angka -1 supaya dapat index buah yang bersesuaian
   
     //===============kodisi if ini untuk masuk ke pembayaran================//

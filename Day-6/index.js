@@ -115,6 +115,42 @@ Output: B
 
 
 let string = 'Saya suka jeruk karena saya dan jeruk suka jeruk dan saya'.split(' ')
+let kataBeda=[]
+kataBeda.push(string[0])
+wordCounter = []
+let modus = ''
+let frekuensiTertinggi
+for(i=0;i<string.length;i++)
+{
+    for(a=0;a<kataBeda.length;a++){
+        if (string[i].toLowerCase()==kataBeda[a].toLowerCase()){
+             break
+        }else if ((string[i].toLowerCase()!==kataBeda[a].toLowerCase()) && (a==kataBeda.length-1) ) {
+            kataBeda.push(string[i])
+        }
+    }
+}
+for(i=0;i<kataBeda.length;i++){
+    wordCounter[i]=0
+}
+    for(i=0;i<kataBeda.length;i++){
+        for(a=0;a<string.length;a++){
+            if (kataBeda[i].toLowerCase()==string[a].toLowerCase()){
+                wordCounter[i]+=1
+        }
+    }
+    }
+    
+frekuensiTertinggi = Math.max(...wordCounter)
+//[kataBeda]=[wordCounter]
+for(i=0;i<wordCounter.length;i++){
+    if(wordCounter[i]==frekuensiTertinggi)
+    {
+        modus += `${kataBeda[i]} `
+    }
+}
 
-console.log(string)
-
+let c=kataBeda
+c[0]='haha'
+//[kataBeda] = wordCounter
+console.log(kataBeda)

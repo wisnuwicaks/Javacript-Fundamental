@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+
+    <p id="1"> 
+
+    </p>
     <script >
         var dataBuah = [{nama: 'Jeruk', harga : 1000, stok:5,totalInputBuah : 0},
                         {nama: 'Mangga', harga : 1000, stok:5,totalInputBuah : 0},
@@ -24,7 +28,7 @@
         var tambahBuah //untuk kondisi saat mau tambah buah
         
         var kePembayaran =0 //indikator loop ke pembayaran
-    
+        document.getElementById("1").innerHTML = dataBuah
         var beliLagi = true;
         var cekStok = true
         while (beliLagi || cekStok) {

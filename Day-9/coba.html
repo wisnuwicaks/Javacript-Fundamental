@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table,tr,td,th{
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <!-- <table>
+        <th> Nama </th>
+        <th> Harga </th>
+        <th> Stok </th>
+    </table> -->
+    <table id='2'>
+        <tr>
+        <th> No </th>
+        <th> Nama </th>
+        <th> Harga </th>
+        <th> Stok </th>
+        </tr>
+    </table>
+    <p id="1"> 
+   
+    </p>
+</body>
+<script>
+    var dataBuah = [{nama: 'Jeruk', harga : 1000, stok:5,totalInputBuah : 0},
+                {nama: 'Mangga', harga : 1000, stok:5,totalInputBuah : 0},
+                {nama: 'Leci', harga : 1000, stok:5,totalInputBuah : 3}
+            ]
+            let menu = ''
+    for (let i = 0; i < dataBuah.length; i++) {
+        document.getElementById("2").innerHTML += `<tr> <td> ${i + 1}.</td><td>${dataBuah[i].nama}</td> <td> IDR ${dataBuah[i].harga}/pcs</td> <td>(${dataBuah[i].stok} items in stock)</td> <tr>`
+    }
+    //document.getElementById("2").innerHTML+=menu;
+</script>
+</html>
