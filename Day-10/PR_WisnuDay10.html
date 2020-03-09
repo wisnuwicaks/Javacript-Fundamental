@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="kosong">
+    <style>
+        table,tr,td,th{
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+        th {
+        cursor: pointer;
+        }
+    </style>
+    <center>
+    <table>
+    <thead>
+        <tr>
+        <th onclick="sortData('namaParam')">Nama</th>
+        <th onclick="sortData('pekerjaanParam')">Pekerjaan</th>
+        <th onclick="sortData('umurParam')">Umur</th>
+        <th>Picture</th>
+        </tr>
+    </thead>
+    <tbody id="mainData">
+     
+    </tbody>
+    <tfoot>
+        <tr>
+           <td><input id="inputNama" type="text" placeholder="Input Nama"></td> 
+           <td><input id="inputPekerjaan" type="text" placeholder="Input Pekerjaan"></td> 
+           <td><input id="inputUmur" type="text" placeholder="Input Umur"></td> 
+           <td><input id="inputLink" type="text" placeholder="Input Picture Link"></td> 
+           <td><input id="submitBtn" type="button" value="Submit" onclick = "addData()"> </td> 
+        </tr>
+    </tfoot>
+    </table>
+
+    </center>
+
+    <script>
+    // let parameter
+    // let sortBy
+    class Orang {
+    constructor(nama,pekerjaan,umur,pic) {
+        this.nama = nama
+        this.pekerjaan = pekerjaan
+        this.umur = umur
+        this.pic = pic
+    }
+    }
+
+    let dataOrang = [
+        new Orang('QWE','DEVELOPER CSS',51,'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'),
+        new Orang('ASD','DEVELOPER AGAME',54,'https://pngimg.com/uploads/mark_zuckerberg/mark_zuckerberg_PNG9.png'),
+        new Orang('ZXC','DEVELOPER WEB',52,'https://outletz.id/wp-content/uploads/2018/02/Bill-Gates-PNG-File.png')
+    ]
+
+    const renderData = () =>{
+        let hasil = ''
+        dataOrang.forEach(({nama,pekerjaan,umur,pic},index) =>{
+            hasil+= `
+            <tr> 
+                <td><center>${nama} </center> </td>
+                <td><center>${pekerjaan} </center> </td>  
+                <td><center>${umur} </center></td>
+                <td><img src=${pic} width="50px"></td>
+                <td><input type="button" value="Delete" onclick ="deleteData(${index})"> </td>
+            </tr>       
+            `
+        }
+        
+        )
+        document.getElementById("mainData").innerHTML=hasil
+    }
+    
+    renderData()
+
+    const addData = () => {
+        //alert('data sudah ditambah')
+        let inputNama = document.getElementById("inputNama").value
+        let inputPekerjaan = document.getElementById("inputPekerjaan").value
+        let inputUmur = document.getElementById("inputUmur").value
+        let inputLink = document.getElementById("inputLink").value
+        let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputLink)
+        if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputLink !==''){
+            dataOrang.push(newData)
+        }
+        else{alert('input tidak boleh kosong')
+        }
+        renderData()
+        // addData()
+        //alert('data sudah ditambah')
+        
+    }
+
+    // addData()
+ 
+    
+    const deleteData = (index) => {
+        dataOrang.splice(index,1)
+        renderData()
+        if(dataOrang.length==0){
+        document.getElementById("kosong").innerHTML='<h1>Data Kosong</h1>'
+    }
+    }
+
+    let saklar = true
+    const sortData = (sortBy) =>{
+       
+        let bandA,bandB
+
+        function compare(a, b) {
+        if(sortBy=='namaParam'){ 
+            bandA = a.nama.toUpperCase();
+            bandB = b.nama.toUpperCase();
+        }
+        else if(sortBy=='pekerjaanParam'){
+            bandA = a.pekerjaan.toUpperCase();
+            bandB = b.pekerjaan.toUpperCase();
+        }
+        else if(sortBy=='umurParam'){
+            bandA = a.umur;
+            bandB = b.umur;
+        }
+        let comparison
+      
+        if (bandA > bandB) {
+            if(saklar==true){
+                comparison = 1;
+            }
+            else {comparison = -1
+            }
+        } 
+        if (bandA < bandB) {
+
+            if(saklar==true){
+                comparison = -1;
+            }
+            else {comparison = 1
+            }
+            }
+
+        return comparison
+        }   
+        
+
+        dataOrang.sort(compare);
+        if(saklar == true) {
+            saklar=false
+        }
+        else {
+            saklar=true
+        }
+        
+        renderData()
+        //alert('2')
+    }
+
+
+    //deleteData()
+
+    
+    </script>
+</body>
+</html>

@@ -153,4 +153,4 @@ for(i=0;i<wordCounter.length;i++){
 let c=kataBeda
 c[0]='haha'
 //[kataBeda] = wordCounter
-console.log(kataBeda)
+console.log(modus)
