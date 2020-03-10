@@ -1,0 +1,3 @@
+-input gender pakai radio button
+-biodata tidak boleh lebih dari 30 karakter termasuk spasi, jika melebihi 30 karakter ada titik2...(hint pakai slice)
+-character count dibawah inputnya misal (7/30)

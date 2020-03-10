@@ -22,6 +22,7 @@
         <th onclick="sortData('namaParam')">Nama</th>
         <th onclick="sortData('pekerjaanParam')">Pekerjaan</th>
         <th onclick="sortData('umurParam')">Umur</th>
+        <th onclick="sortData('umurParam')">Biodata</th>
         <th>Picture</th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
            <td><input id="inputNama" type="text" placeholder="Input Nama"></td> 
            <td><input id="inputPekerjaan" type="text" placeholder="Input Pekerjaan"></td> 
            <td><input id="inputUmur" type="text" placeholder="Input Umur"></td> 
+           <td><input id="inputBio" type="text" placeholder="Input Biodata"></td> 
            <td><input id="inputLink" type="text" placeholder="Input Picture Link"></td> 
            <td><input id="submitBtn" type="button" value="Submit" onclick = "addData()"> </td> 
         </tr>
@@ -45,10 +47,11 @@
     // let parameter
     // let sortBy
     class Orang {
-    constructor(nama,pekerjaan,umur,pic) {
+    constructor(nama,pekerjaan,umur,bio,pic) {
         this.nama = nama
         this.pekerjaan = pekerjaan
         this.umur = umur
+        this.bio = bio
         this.pic = pic
     }
     }
@@ -67,6 +70,7 @@
                 <td><center>${nama} </center> </td>
                 <td><center>${pekerjaan} </center> </td>  
                 <td><center>${umur} </center></td>
+                <td><center>${bio} </center></td>
                 <td><img src=${pic} width="50px"></td>
                 <td><input type="button" value="Delete" onclick ="deleteData(${index})"> </td>
             </tr>       
@@ -86,11 +90,16 @@
         let inputUmur = document.getElementById("inputUmur").value
         let inputLink = document.getElementById("inputLink").value
         let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputLink)
+
         if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputLink !==''){
             dataOrang.push(newData)
         }
         else{alert('input tidak boleh kosong')
         }
+        inputNama = document.getElementById("inputNama").value = ''
+        inputPekerjaan = document.getElementById("inputPekerjaan").value = ''
+        inputUmur = document.getElementById("inputUmur").value= ''
+        inputLink = document.getElementById("inputLink").value= ''
         renderData()
         // addData()
         //alert('data sudah ditambah')
@@ -103,44 +112,46 @@
     const deleteData = (index) => {
         dataOrang.splice(index,1)
         renderData()
-        if(dataOrang.length==0){
-        document.getElementById("kosong").innerHTML='<h1>Data Kosong</h1>'
-    }
+    //     if(dataOrang.length==0){
+    //     document.getElementById("kosong").innerHTML='<h1>Data Kosong</h1>'
+    // }
     }
 
     let saklar = true
     const sortData = (sortBy) =>{
        
-        let bandA,bandB,property
-        if (sortBy=='namaParam'){
-            property = 'nama'
+        let bandA,bandB
+
+        function compare(a, b) {
+        if(sortBy=='namaParam'){ 
+            bandA = a.nama.toUpperCase();
+            bandB = b.nama.toUpperCase();
         }
         else if(sortBy=='pekerjaanParam'){
-            property = 'pekerjaan'
+            bandA = a.pekerjaan.toUpperCase();
+            bandB = b.pekerjaan.toUpperCase();
         }
-        else if (sortBy=='umurParam'){
-            property = 'umur'
+        else if(sortBy=='umurParam'){
+            bandA = a.umur;
+            bandB = b.umur;
         }
-        
-        function compare(a, b) {
-        bandA = a.nama.toUpperCase();
-        bandB = b.property.toUpperCase();
         let comparison
       
         if (bandA > bandB) {
             if(saklar==true){
-                comparison = 1;
+                comparison = 1; ////kalau return negatif maka tidak tukar, dan sebaliknya
             }
             else {comparison = -1
             }
         } 
         if (bandA < bandB) {
+
             if(saklar==true){
                 comparison = -1;
             }
             else {comparison = 1
             }
-        }
+            }
 
         return comparison
         }   
@@ -156,6 +167,10 @@
         
         renderData()
         //alert('2')
+    }
+
+    if(dataOrang.length==0){
+        document.getElementById("kosong").innerHTML='<h1>Data Kosong</h1>'
     }
 
 

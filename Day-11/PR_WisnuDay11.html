@@ -22,7 +22,10 @@
         <th onclick="sortData('namaParam')">Nama</th>
         <th onclick="sortData('pekerjaanParam')">Pekerjaan</th>
         <th onclick="sortData('umurParam')">Umur</th>
+        <th>Gender</th>
+        <th>Biodata</th>
         <th>Picture</th>
+        <th>Action</th>
         </tr>
     </thead>
     <tbody id="mainData">
@@ -32,7 +35,17 @@
         <tr>
            <td><input id="inputNama" type="text" placeholder="Input Nama"></td> 
            <td><input id="inputPekerjaan" type="text" placeholder="Input Pekerjaan"></td> 
-           <td><input id="inputUmur" type="text" placeholder="Input Umur"></td> 
+           <td><input id="inputUmur" type="number" placeholder="Input Umur"></td> 
+            <td>
+                <input type="radio" id="inputGender" name="gender" value="Male"> Male
+                <input type="radio" id="inputGender" name="gender" value="Female"> Female
+            </td>
+           <td>
+                <!-- <textarea id="textareaChars" maxlength="30"></textarea>
+                <span id="chars">30</span> characters remaining  -->
+                <textarea id="inputBio" onkeyup="charcountupdate(this.value)"> </textarea>
+                <span id=charcount></span>
+            </td>
            <td><input id="inputLink" type="text" placeholder="Input Picture Link"></td> 
            <td><input id="submitBtn" type="button" value="Submit" onclick = "addData()"> </td> 
         </tr>
@@ -42,31 +55,43 @@
     </center>
 
     <script>
-    // let parameter
-    // let sortBy
+
+    function charcountupdate(str) {
+	var lng = str.length;
+	document.getElementById("charcount").innerHTML = lng + ' out of 30 characters';
+    }
     class Orang {
-    constructor(nama,pekerjaan,umur,pic) {
+    constructor(nama,pekerjaan,umur,gender,bio,pic) {
         this.nama = nama
         this.pekerjaan = pekerjaan
         this.umur = umur
+        this.gender = gender
+        this.bio = bio
         this.pic = pic
     }
     }
 
     let dataOrang = [
-        new Orang('QWE','DEVELOPER CSS',51,'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'),
-        new Orang('ASD','DEVELOPER AGAME',54,'https://pngimg.com/uploads/mark_zuckerberg/mark_zuckerberg_PNG9.png'),
-        new Orang('ZXC','DEVELOPER WEB',52,'https://outletz.id/wp-content/uploads/2018/02/Bill-Gates-PNG-File.png')
+        new Orang('QWE','DEVELOPER CSS',51,'Male','Saya adalah','https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'),
+        new Orang('ASD','DEVELOPER AGAME',54,'Male','Saya adalah','https://pngimg.com/uploads/mark_zuckerberg/mark_zuckerberg_PNG9.png'),
+        new Orang('ZXC','DEVELOPER WEB',52,'Female','Saya adalah','https://outletz.id/wp-content/uploads/2018/02/Bill-Gates-PNG-File.png')
     ]
 
     const renderData = () =>{
         let hasil = ''
-        dataOrang.forEach(({nama,pekerjaan,umur,pic},index) =>{
+        dataOrang.forEach(({nama,pekerjaan,umur,gender,bio,pic},index) =>{
+            if (bio.length>=30)
+            {
+                bio=bio.slice(0,30)
+                bio += '...'
+            }
             hasil+= `
             <tr> 
                 <td><center>${nama} </center> </td>
                 <td><center>${pekerjaan} </center> </td>  
                 <td><center>${umur} </center></td>
+                <td>${gender}</td>
+                <td><center>${bio} </center></td>
                 <td><img src=${pic} width="50px"></td>
                 <td><input type="button" value="Delete" onclick ="deleteData(${index})"> </td>
             </tr>       
@@ -84,10 +109,24 @@
         let inputNama = document.getElementById("inputNama").value
         let inputPekerjaan = document.getElementById("inputPekerjaan").value
         let inputUmur = document.getElementById("inputUmur").value
+        let gender= document.getElementsByName("gender")
+        let inputGender
+        for(i=0;i<gender.length;i++){
+            if(gender[i].checked){
+                inputGender = gender[i].value
+               
+            }
+        }
+    
+        //let inputBioFullText = document.getElementById("inputBio").value
+        let inputBio = document.getElementById("inputBio").value
+        // let inputBio = ''
+        // let inputBioCut = inputBioFullText.slice(0,30)
+        // inputBio += inputBioCut + '...'
         let inputLink = document.getElementById("inputLink").value
-        let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputLink)
+        let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputGender,inputBio,inputLink)
 
-        if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputLink !==''){
+        if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputUmur/1!==NaN && inputLink !==''&& inputGender !==undefined){
             dataOrang.push(newData)
         }
         else{alert('input tidak boleh kosong')
@@ -95,6 +134,8 @@
         inputNama = document.getElementById("inputNama").value = ''
         inputPekerjaan = document.getElementById("inputPekerjaan").value = ''
         inputUmur = document.getElementById("inputUmur").value= ''
+        inputGender = document.getElementsByName("gender").value= false
+        inputBio = document.getElementById("inputBio").value= ''
         inputLink = document.getElementById("inputLink").value= ''
         renderData()
         // addData()

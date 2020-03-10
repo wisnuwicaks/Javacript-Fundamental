@@ -2,3 +2,6 @@ spek PR
 -ketika submit pastikan semua field terisi
 -function untuk sorting, di header
 -ketika semua terdelete jangan tampilin table, tampilkan alert data kosong
+
+points.sort((a, b) => b - a);
+
