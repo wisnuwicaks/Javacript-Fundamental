@@ -7,12 +7,15 @@
 </head>
 <body id="kosong">
     <style>
+        
         table,tr,td,th{
             border:1px solid black;
             border-collapse: collapse;
+            background-image: url(https://png.pngtree.com/png-vector/20190309/ourmid/pngtree-abstract-background-png-image_783999.jpg);
         }
         th {
         cursor: pointer;
+        
         }
     </style>
     <center>
@@ -43,8 +46,8 @@
            <td>
                 <!-- <textarea id="textareaChars" maxlength="30"></textarea>
                 <span id="chars">30</span> characters remaining  -->
-                <textarea id="inputBio" onkeyup="charcountupdate(this.value)"> </textarea>
-                <span id=charcount></span>
+                <textarea id="inputBio" onkeyup="updateStringTertulis(this.value)"> </textarea>
+                <br><center><span id=charcount></span></center>
             </td>
            <td><input id="inputLink" type="text" placeholder="Input Picture Link"></td> 
            <td><input id="submitBtn" type="button" value="Submit" onclick = "addData()"> </td> 
@@ -56,10 +59,8 @@
 
     <script>
 
-    function charcountupdate(str) {
-	var lng = str.length;
-	document.getElementById("charcount").innerHTML = lng + ' out of 30 characters';
-    }
+  
+
     class Orang {
     constructor(nama,pekerjaan,umur,gender,bio,pic) {
         this.nama = nama
@@ -104,6 +105,10 @@
     
     renderData()
 
+    function updateStringTertulis(str) {
+        var stringTertulis = str.length;
+        document.getElementById("charcount").innerHTML = stringTertulis + ' out of 30 characters';
+    }
     const addData = () => {
         //alert('data sudah ditambah')
         let inputNama = document.getElementById("inputNama").value
@@ -117,24 +122,24 @@
                
             }
         }
-    
-        //let inputBioFullText = document.getElementById("inputBio").value
+
         let inputBio = document.getElementById("inputBio").value
-        // let inputBio = ''
-        // let inputBioCut = inputBioFullText.slice(0,30)
-        // inputBio += inputBioCut + '...'
         let inputLink = document.getElementById("inputLink").value
         let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputGender,inputBio,inputLink)
 
-        if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputUmur/1!==NaN && inputLink !==''&& inputGender !==undefined){
+        if(inputNama !== '' && inputPekerjaan !=='' && inputUmur !=='' && inputLink !==''&& inputGender !==undefined){
             dataOrang.push(newData)
         }
-        else{alert('input tidak boleh kosong')
+        else{
+            alert('input invalid atau field kosong')
         }
         inputNama = document.getElementById("inputNama").value = ''
         inputPekerjaan = document.getElementById("inputPekerjaan").value = ''
         inputUmur = document.getElementById("inputUmur").value= ''
-        inputGender = document.getElementsByName("gender").value= false
+        inputGender = document.getElementsByName("gender")
+        for( i=0;i<inputGender.length;i++){
+        inputGender[i].checked = false;
+        }
         inputBio = document.getElementById("inputBio").value= ''
         inputLink = document.getElementById("inputLink").value= ''
         renderData()

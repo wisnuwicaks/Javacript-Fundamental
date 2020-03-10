@@ -23,3 +23,5 @@ arr = [1,2,3,4]
 // console.log(arr.map((val)=> {return val*2}))
 hasil=arr.map((val)=> {return val*2})
 console.log(hasil)
+
+console.log('sss'/2)
