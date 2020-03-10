@@ -8,14 +8,19 @@
 <body id="kosong">
     <style>
         
-        table,tr,td,th{
+        table,td,th{
             border:1px solid black;
             border-collapse: collapse;
-            background-image: url(https://png.pngtree.com/png-vector/20190309/ourmid/pngtree-abstract-background-png-image_783999.jpg);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+           
+        }
+        table {
+            background-image: url(https://webgradients.com/public/webgradients_png/008%20Rainy%20Ashville.png);
+            background-size: 300px;
         }
         th {
         cursor: pointer;
-        
+        font-size: 20px;
         }
     </style>
     <center>
@@ -87,13 +92,14 @@
                 bio += '...'
             }
             hasil+= `
+            
             <tr> 
                 <td><center>${nama} </center> </td>
                 <td><center>${pekerjaan} </center> </td>  
                 <td><center>${umur} </center></td>
-                <td>${gender}</td>
+                <td><center>${gender}</center></td>
                 <td><center>${bio} </center></td>
-                <td><img src=${pic} width="50px"></td>
+                <td><center><img src=${pic} width="50px"></center></td>
                 <td><input type="button" value="Delete" onclick ="deleteData(${index})"> </td>
             </tr>       
             `
