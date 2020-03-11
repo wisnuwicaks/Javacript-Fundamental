@@ -174,7 +174,7 @@
         
         function renderData(arr = dataProduct,stringEdit =-1,indexTarget){
             let stringData = ''
-            alert('dirender:'+stringEdit)
+            //alert('dirender:'+stringEdit)
             // arr.forEach(element => {
             //     for(i=0;i<element.length;i++)
             //     objAllProduct.push(element[i])
@@ -285,30 +285,28 @@
                                 <td><input id="hargaLama" value="${harga}"></td>
                                     <td><input id="stokLama" value="${stok}"> </td>
                         `
-                        alert(stringEdit)
+                        
                 }
             });
      
-        // let gantiId
-        // let gantiKategori
-        // let gantiNama
-        // let gantiHarga
-        // let gantiStok
+   
             renderData(dataProduct,stringEdit,indexKirim)
         }
 
         function saveData(index)
         {
-        var name_val=document.getElementById("name_text"+no).value;
-        var country_val=document.getElementById("country_text"+no).value;
-        var age_val=document.getElementById("age_text"+no).value;
+            alert(index)
+            let gantiId = document.getElementById("idLama").value *1
+            let gantiKategori = document.getElementById("kategoriLama").value
+            let gantiNama = document.getElementById("namaLama").value
+            let gantiHarga = document.getElementById("hargaLama").value *1
+            let gantiStok = document.getElementById("stokLama").value *1
 
-        document.getElementById("name_row"+no).innerHTML=name_val;
-        document.getElementById("country_row"+no).innerHTML=country_val;
-        document.getElementById("age_row"+no).innerHTML=age_val;
+            dataProduct[index] = new FastFood(gantiId,gantiKategori,gantiNama,gantiHarga,gantiStok)
+            renderData()
+            document.getElementById("editDataBtn").style.display="block";
+            document.getElementById("saveDataBtn").style.display="none";
 
-        document.getElementById("editDataBtn").style.display="block";
-        document.getElementById("saveDataBtn").style.display="none";
         }
 
 </script>
