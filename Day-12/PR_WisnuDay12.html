@@ -60,6 +60,27 @@
     </tfoot>
     </table>
 
+    <br>
+
+    <table>
+        <tr>
+            <td><input id="filterNama" type="text" placeholder="Search by Nama"></td> 
+            <td><input id="filterPekerjaan" type="text" placeholder="Search by Pekerjaan"></td>  
+            <td>
+                <select id="filterGender">
+                    <option disabled selected value="Default">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </td>
+            <td><input id="filterUmurMin" type="number" placeholder="Umur Minimal"></td>  
+            <td><input id="filterUmurMax" type="number" placeholder="Umur Maximal"></td>  
+            <td><input id="searchBtn" type="button" value="Search" onclick = "searchData()"> </td> 
+        </tr>
+    </table>
+
+    <br>
+
     </center>
 
     <script>
@@ -83,9 +104,9 @@
         new Orang('ZXC','DEVELOPER WEB',52,'Female','Saya adalah','https://outletz.id/wp-content/uploads/2018/02/Bill-Gates-PNG-File.png')
     ]
 
-    const renderData = () =>{
+    const renderData = (arr=dataOrang) =>{
         let hasil = ''
-        dataOrang.forEach(({nama,pekerjaan,umur,gender,bio,pic},index) => {
+        arr.forEach(({nama,pekerjaan,umur,gender,bio,pic},index) => {
             if (bio.length>=30){
                 bio=bio.slice(0,30)
                 bio += '...'
@@ -108,6 +129,37 @@
     
     renderData()
 
+    const searchData = () =>{
+        let filterNama = document.getElementById("filterNama").value
+        let filterPekerjaan = document.getElementById("filterPekerjaan").value
+        let filterGender = document.getElementById("filterGender").value
+        let filterUmurMin = parseInt(document.getElementById("filterUmurMin").value)
+        let filterUmurMax = parseInt(document.getElementById("filterUmurMax").value)
+        let arrSearch = []
+            dataOrang.forEach(({nama,gender,pekerjaan,umur},index)=>{
+
+                if(!filterUmurMax)
+                {
+                    filterUmurMax=999
+                }
+                if(nama.startsWith(filterNama) && 
+                    pekerjaan.startsWith(filterPekerjaan) &&
+                    gender.startsWith(filterGender) && 
+                    umur>=filterUmurMin && 
+                    umur<=filterUmurMax
+                )
+                {
+                    arrSearch.push(dataOrang[index])
+                }
+            }
+        )
+            alert(filterUmurMin)
+            alert(filterUmurMax)
+            alert(arrSearch)
+        renderData(arrSearch)
+    }
+
+
     function updateStringTertulis(str) {
         var stringTertulis = str.length;
         document.getElementById("charcount").innerHTML = stringTertulis + ' out of 30 characters';
@@ -116,7 +168,7 @@
         //alert('data sudah ditambah')
         let inputNama = document.getElementById("inputNama").value
         let inputPekerjaan = document.getElementById("inputPekerjaan").value
-        let inputUmur = document.getElementById("inputUmur").value
+        let inputUmur = parseInt(document.getElementById("inputUmur").value)
         let gender= document.getElementsByName("gender")
         let inputGender
         for(i=0;i<gender.length;i++){
@@ -126,7 +178,7 @@
             }
         }
 
-        let inputBio = document.getElementById("inputBio").value = ''
+        let inputBio = document.getElementById("inputBio").value
         let inputLink = document.getElementById("inputLink").value
         let newData = new Orang(inputNama,inputPekerjaan,inputUmur,inputGender,inputBio,inputLink)
 

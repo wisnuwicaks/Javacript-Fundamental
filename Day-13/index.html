@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        
+        table,td,th{
+            border:1px solid black;
+            border-collapse: collapse;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+           
+        }
+        table {
+            background-image: url(https://webgradients.com/public/webgradients_png/008%20Rainy%20Ashville.png);
+            background-size: 300px;
+        }
+        th {
+        cursor: pointer;
+        font-size: 16px;
+        }
+
+        fieldset {
+        font-size:16px;
+        padding:10px; 
+        width:700px;
+        margin-left: 100px;
+        margin-right: 100px;
+        line-height:1.8;}
+    </style>
+
+<fieldset>
+    <legend>Filter:</legend>
+   
+    <p>Nama : <input type="text" name="namaProduk" id="namaProduk" placeholder="Masukkan nama produk"> </p>
+    <p>Harga :
+        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min"> -
+        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max"> 
+    </p>
+    <p>
+        Category :
+            <select id="filterProduk">
+                <option disabled selected value="Default">Select Procut Category</option>
+                <option value="fastFood">Fast Food</option>
+                <option value="electronic">Electronic</option>
+                <option value="cloth">Cloth</option>
+                <option value="fruit">Fruitc</option>
+            </select>
+    </p>
+
+   </fieldset>
+
+   <fieldset>
+    <legend>Input Data:</legend>
+    <table>
+        <tr>
+            <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk"> </td>
+            <td><input type="text" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
+            <td>
+                <select name="kategoriProduk" id="kategoriProduk">
+                    <option disabled selected value="Default">Select Product Category</option>
+                    <option value="fastFood">Fast Food</option>
+                    <option value="electronic">Electronic</option>
+                    <option value="cloth">Cloth</option>
+                    <option value="fruit">Fruitc</option>
+                </select>
+            </td>  
+        </tr>
+      
+    </table>
+    <input type="button" name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()">
+   </fieldset>
+   
+   <fieldset>
+        
+   <legend>Tabel Data:</legend>
+   <table>
+       <thead>
+           <th>Id</th>
+           <th>Category</th>
+           <th>Nama</th>
+           <th>Price</th>
+           <th>Stok</th>
+           <th>Buy</th>
+           <th>Action</th>
+       </thead>
+       <tbody id="tampilData">
+
+       </tbody>
+   </table>
+   </fieldset>
+
+   <fieldset>
+        
+    <legend>Cart:</legend>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Nama</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Action</th>
+          
+            <td> </td>
+        </tr>
+    </table>
+    </fieldset>
+
+    <fieldset>
+        
+        <legend>Payment:</legend>
+     
+        </fieldset>
+<script>
+    class Produk {
+        constructor(nama,harga,stok,qty) {
+            this.nama = nama
+            this.harga = harga
+            this.stok = stok
+            this.qty = 0
+        }
+    }
+
+        class HP extends Produk {
+        constructor(nama,harga,stok,qty, waranty) {
+            super(nama,harga,stok,qty)
+            this.waranty = waranty
+        }
+    }
+
+        class Buah extends Produk {
+        constructor(nama,harga,stok,qty, expired) {
+            super(nama,harga,stok,qty)
+            this.expired = expired 
+        }
+    }
+        class Baju extends Produk {
+        constructor(nama,harga,stok,qty, size) {
+            super(nama,harga,stok,qty)
+            this.size = size
+        }
+    }
+
+        let arrItems = [new Buah('Jeruk',1000,5,0,'10-10-2019'),
+                    new Buah('Mangga',1000,5,0,'10-10-2020'),  
+                    new Baju('Zalora',1000,5,0,'L'),
+                    new Baju('Indomaret',1000,5,0,'L'),
+                    new HP('Xiaomi',1000,5,0,false),
+                    new HP('Samsung',1000,5,0,true),
+                    new HP('Nokia',1000,5,0,false)
+                    ]
+
+
+    
+</script>
+</body>
+</html>
