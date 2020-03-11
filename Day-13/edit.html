@@ -15,8 +15,8 @@
            
         }
         table {
-            background-image: url(https://webgradients.com/public/webgradients_png/008%20Rainy%20Ashville.png);
-            background-size: 300px;
+            background-image: url(https://webgradients.com/public/webgradients_png/031%20Blessing.png);
+            background-size: 400px;
         }
         th {
         cursor: pointer;
@@ -24,9 +24,12 @@
         }
 
         fieldset {
+            border-color: lightcoral;
+            background-image: url(https://webgradients.com/public/webgradients_png/031%20Blessing.png);
+            background-size: 400px;
         font-size:16px;
         padding:10px; 
-        width:700px;
+        /* width:700px; */
         margin-left: 100px;
         margin-right: 100px;
         line-height:1.8;}
@@ -129,7 +132,7 @@
 
         class FastFood extends Produk {
         constructor(id,kategori,nama,harga,stok,qty) {
-            super(nama,harga,stok,qty)
+            super(id,kategori,nama,harga,stok,qty)
          
         }
     }
@@ -154,20 +157,47 @@
         }
     }
 
-        let datProduk = [
+        let dataProduct = [
                     [new FastFood(123,"Fast Food",'Burger',1000,5,0),
                     new FastFood(234,"Fast Food",'Pizza',1000,5,0)],  
-                    [new Electronic(345,"Fast Food",'HP',1000,5,0),
-                    new Electronic(456,"Fast Food",'Laptop',1000,5,0)],
-                    [new Cloth(567,"Fast Food",'Indomaret',1000,5,0),
-                    new Cloth(678,"Fast Food",'Alfamart',1000,5,0)],
-                    [new Fruit(789,"Fast Food",'Mangga',1000,5,0), 
-                    new Fruit(890,"Fast Food",'Jeruk',1000,5,0)]
+                    [new Electronic(345,"Electronic",'HP',1000,5,0),
+                    new Electronic(456,"Electronic",'Laptop',1000,5,0)],
+                    [new Cloth(567,"Cloth",'Indomaret',1000,5,0),
+                    new Cloth(678,"Cloth",'Alfamart',1000,5,0)],
+                    [new Fruit(789,"Fruit",'Mangga',1000,5,0), 
+                    new Fruit(890,"Fruit",'Jeruk',1000,5,0)]
                     ]
 
-        renderData(arr = dataProduk){
+        let objAllProduct =[]
+        let stringData = ''
+        function renderData(arr = dataProduct){
             
+            arr.forEach(element => {
+                for(i=0;i<element.length;i++)
+                objAllProduct.push(element[i])
+            })
+            // alert(objAllProduct)
+            objAllProduct.forEach(({id,kategori,nama,harga,stok},index) => {
+                stringData += `
+                <tr>
+                <td><center>${id}</td>
+                <td><center>${kategori}</td>  
+                <td><center>${nama}</td>  
+                <td><center>${harga}</td> 
+                <td><center>${stok}</td>
+                <td><input type="button" id="addCart" value="ADD" onclick = "addCart(${index})"></td>
+                <td>
+                    <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${index})">
+                    <input type="button" id="editData" value="EDIT" onclick = "editData(${index})">
+                </td>
+                </tr>  
+                ` 
+            });
+           
+            document.getElementById("tampilData").innerHTML=stringData
         }
+      
+        renderData()
 
 </script>
 </body>
