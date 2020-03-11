@@ -62,7 +62,7 @@
     <table>
         <tr>
             <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk" > </td>
-            <td><input type="number" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
+            <td><input  type="buton" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
             <td>
                 <select name="kategoriProduk" id="kategoriProduk">
                     <option disabled selected value="Default">Select Product Category</option>
@@ -76,7 +76,7 @@
         </tr>
       
     </table>
-    <input type="button" name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()">
+    <input type="button"  name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()">
    </fieldset>
    
    <fieldset>
@@ -170,16 +170,19 @@
                     new Fruit(890,"Fruit",'Jeruk',1000,5,0)
                     ]
 
+       
+
         let objAllProduct =[]
         
-        function renderData(arr = dataProduct,stringEdit =-1,indexTarget){
+        function renderData(arr = dataProduct,stringEdit,indexTarget=-1){
             let stringData = ''
             //alert('dirender:'+stringEdit)
             // arr.forEach(element => {
             //     for(i=0;i<element.length;i++)
             //     objAllProduct.push(element[i])
             // })
-            let fieldEdit
+            let fieldEdit =''
+            let tombolSave = ''
             arr.forEach(({id,kategori,nama,harga,stok},index) => {
                 if (index == indexTarget){
                     fieldEdit = stringEdit
@@ -192,7 +195,11 @@
                             <td><center>${harga}</td>
                                 <td><center>${stok}</td>`
                                 }
-
+                if(indexTarget !==-1)
+                {
+                    // alert(fieldEdit)
+                    tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
+                }
                 stringData += `
                 <tr>
                 ${fieldEdit}
@@ -200,18 +207,19 @@
                 <td>
                     <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${index})">
                     <input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${index})">
-                    <input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})">
+                    ${tombolSave}
                 </td>
                 </tr>  
                 ` 
             });
-            
+        
             document.getElementById("tampilData").innerHTML=stringData
             
         }
-      
-        renderData()
         
+        renderData()
+        // document.getElementById("editDataBtn").style.display="block";
+        // document.getElementById("saveDataBtn").style.display="none";
         function filterData(){
             if(event.keyCode == 13) {
         //alert(ele.value);        
@@ -228,7 +236,7 @@
                 }
             });
             
-            alert(filterKategori)
+            // alert(filterKategori)
             renderData(arrFiltered)
         }
         }
@@ -274,8 +282,8 @@
             let stringEdit = ''
        // alert(index)
        let indexKirim = index
-        document.getElementById("editDataBtn").style.display="none";
-        document.getElementById("saveDataBtn").style.display="block";
+        // document.getElementById("editDataBtn").style.display="none";
+        // document.getElementById("saveDataBtn").style.display="block";
   
         dataProduct.forEach(({id,kategori,nama,harga,stok},indexEdit) => {
                 if (indexEdit==index) {
@@ -304,8 +312,8 @@
 
             dataProduct[index] = new FastFood(gantiId,gantiKategori,gantiNama,gantiHarga,gantiStok)
             renderData()
-            document.getElementById("editDataBtn").style.display="block";
-            document.getElementById("saveDataBtn").style.display="none";
+            // document.getElementById("editDataBtn").style.display="block";
+            // document.getElementById("saveDataBtn").style.display="none";
 
         }
 
