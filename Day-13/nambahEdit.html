@@ -172,27 +172,35 @@
 
         let objAllProduct =[]
         
-        function renderData(arr = dataProduct,indexEdit){
+        function renderData(arr = dataProduct,stringEdit =-1,indexTarget){
             let stringData = ''
+            alert('dirender:'+stringEdit)
             // arr.forEach(element => {
             //     for(i=0;i<element.length;i++)
             //     objAllProduct.push(element[i])
             // })
-      
+            let fieldEdit
             arr.forEach(({id,kategori,nama,harga,stok},index) => {
-                
+                if (index == indexTarget){
+                    fieldEdit = stringEdit
+                    alert("masuk field edit")
+                }
+                else{
+                fieldEdit = `<td><center>${id}</td> 
+                    <td><center>${kategori}</td>
+                        <td><center>${nama}</td> 
+                            <td><center>${harga}</td>
+                                <td><center>${stok}</td>`
+                                }
+
                 stringData += `
                 <tr>
-                <td><center>${id}</td>
-                <td><center>${kategori}</td>  
-                <td><center>${nama}</td>  
-                <td><center>${harga}</td> 
-                <td><center>${stok}</td>
+                ${fieldEdit}
                 <td><input type="button" id="addCart" value="ADD" onclick = "addCart(${index})"></td>
                 <td>
                     <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${index})">
                     <input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${index})">
-                    <input type="button" id="saveDataBtn" value="SAVE" onclick = "editData(${index})">
+                    <input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})">
                 </td>
                 </tr>  
                 ` 
@@ -259,28 +267,34 @@
             dataProduct.splice(index,1)
             renderData()
         }
+      
 
         function editData(index)
         {
+            let stringEdit = ''
+       // alert(index)
+       let indexKirim = index
         document.getElementById("editDataBtn").style.display="none";
         document.getElementById("saveDataBtn").style.display="block";
-        
-        let gantiId
-        let gantiKategori
-        let gantiNama
-        let gantiHarga
-        let gantiStok
-        var name=document.getElementById("name_row"+no);
-        var country=document.getElementById("country_row"+no);
-        var age=document.getElementById("age_row"+no);
-            
-        var name_data=name.innerHTML;
-        var country_data=country.innerHTML;
-        var age_data=age.innerHTML;
-            
-        name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
-        country.innerHTML="<input type='text' id='country_text"+no+"' value='"+country_data+"'>";
-        age.innerHTML="<input type='text' id='age_text"+no+"' value='"+age_data+"'>";
+  
+        dataProduct.forEach(({id,kategori,nama,harga,stok},indexEdit) => {
+                if (indexEdit==index) {
+                    stringEdit += `<td><input id="idLama" value="${id}"></td>
+                        <td><input id="kategoriLama" value="${kategori}""></td>
+                            <td><input id="namaLama" value="${nama}"></td>
+                                <td><input id="hargaLama" value="${harga}"></td>
+                                    <td><input id="stokLama" value="${stok}"> </td>
+                        `
+                        alert(stringEdit)
+                }
+            });
+     
+        // let gantiId
+        // let gantiKategori
+        // let gantiNama
+        // let gantiHarga
+        // let gantiStok
+            renderData(dataProduct,stringEdit,indexKirim)
         }
 
         function saveData(index)

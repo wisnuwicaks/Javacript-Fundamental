@@ -68,7 +68,7 @@
  var country_data=country.innerHTML;
  var age_data=age.innerHTML;
 	
- name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
+ document.getElementById("name_row"+no).innerHTML="<input type='text' id='name_text"+no+"' value='"+document.getElementById("name_row"+no);.innerHTML+"'>";
  country.innerHTML="<input type='text' id='country_text"+no+"' value='"+country_data+"'>";
  age.innerHTML="<input type='text' id='age_text"+no+"' value='"+age_data+"'>";
 }
