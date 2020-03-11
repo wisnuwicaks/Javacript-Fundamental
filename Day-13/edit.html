@@ -38,19 +38,20 @@
 <fieldset>
     <legend>Filter:</legend>
    
-    <p>Nama : <input type="text" name="namaProduk" id="namaProduk" placeholder="Masukkan nama produk"> </p>
+    <p>Nama : <input type="text" name="namaProduk" id="namaProduk" 
+                placeholder="Masukkan nama produk" onkeydown="filterData()"> </p>
     <p>Harga :
-        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min"> -
-        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max"> 
+        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min" onkeydown="filterData(this)"> -
+        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max" onkeydown="filterData(this)"> 
     </p>
     <p>
         Category :
-            <select id="filterProduk">
-                <option disabled selected value="Default">Select Procut Category</option>
-                <option value="fastFood">Fast Food</option>
-                <option value="electronic">Electronic</option>
-                <option value="cloth">Cloth</option>
-                <option value="fruit">Fruitc</option>
+            <select id="filterKategori" onkeydown="filterData()">
+                <option disabled selected value="Default">Select Product Category</option>
+                <option value="Fast Food">Fast Food</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Cloth">Cloth</option>
+                <option value="Fruit">Fruitc</option>
             </select>
     </p>
 
@@ -60,15 +61,15 @@
     <legend>Input Data:</legend>
     <table>
         <tr>
-            <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk"> </td>
+            <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk" > </td>
             <td><input type="text" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
             <td>
                 <select name="kategoriProduk" id="kategoriProduk">
                     <option disabled selected value="Default">Select Product Category</option>
-                    <option value="fastFood">Fast Food</option>
-                    <option value="electronic">Electronic</option>
-                    <option value="cloth">Cloth</option>
-                    <option value="fruit">Fruitc</option>
+                    <option value="Fast Food">Fast Food</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Cloth">Cloth</option>
+                    <option value="Fruit">Fruitc</option>
                 </select>
             </td>  
         </tr>
@@ -158,26 +159,26 @@
     }
 
         let dataProduct = [
-                    [new FastFood(123,"Fast Food",'Burger',1000,5,0),
-                    new FastFood(234,"Fast Food",'Pizza',1000,5,0)],  
-                    [new Electronic(345,"Electronic",'HP',1000,5,0),
-                    new Electronic(456,"Electronic",'Laptop',1000,5,0)],
-                    [new Cloth(567,"Cloth",'Indomaret',1000,5,0),
-                    new Cloth(678,"Cloth",'Alfamart',1000,5,0)],
-                    [new Fruit(789,"Fruit",'Mangga',1000,5,0), 
-                    new Fruit(890,"Fruit",'Jeruk',1000,5,0)]
+                    new FastFood(123,"Fast Food",'Burger',1000,5,0),
+                    new FastFood(234,"Fast Food",'Pizza',1000,5,0),  
+                    new Electronic(345,"Electronic",'Bur HP',1000,5,0),
+                    new Electronic(456,"Electronic",'Laptop',1000,5,0),
+                    new Cloth(567,"Cloth",'Indomaret',1000,5,0),
+                    new Cloth(678,"Cloth",'Alfamart',1000,5,0),
+                    new Fruit(789,"Fruit",'Mangga',1000,5,0), 
+                    new Fruit(890,"Fruit",'Jeruk',1000,5,0)
                     ]
 
         let objAllProduct =[]
-        let stringData = ''
+        
         function renderData(arr = dataProduct){
-            
-            arr.forEach(element => {
-                for(i=0;i<element.length;i++)
-                objAllProduct.push(element[i])
-            })
-            // alert(objAllProduct)
-            objAllProduct.forEach(({id,kategori,nama,harga,stok},index) => {
+            let stringData = ''
+            // arr.forEach(element => {
+            //     for(i=0;i<element.length;i++)
+            //     objAllProduct.push(element[i])
+            // })
+      
+            arr.forEach(({id,kategori,nama,harga,stok},index) => {
                 stringData += `
                 <tr>
                 <td><center>${id}</td>
@@ -193,11 +194,37 @@
                 </tr>  
                 ` 
             });
-           
+            
             document.getElementById("tampilData").innerHTML=stringData
+            
         }
       
         renderData()
+        
+        function filterData(){
+            if(event.keyCode == 13) {
+        //alert(ele.value);        
+        let arrFiltered = []
+            let namaProduk = document.getElementById("namaProduk").value.toLowerCase()
+            let hargaMin = parseInt(document.getElementById("hargaMin").value)
+            let hargaMax = parseInt(document.getElementById("hargaMax").value)
+            let filterKategori = document.getElementById("filterKategori").value
+          
+            dataProduct.forEach(({id,kategori,nama,harga,stok},index) => {
+                if (nama.toLowerCase().startsWith(namaProduk) && 
+                    (filterKategori==kategori) ) {
+                    arrFiltered.push(dataProduct[index])
+                }
+            });
+            
+            alert(filterKategori)
+            renderData(arrFiltered)
+        }
+        }
+
+        const addData = () =>{
+
+        }
 
 </script>
 </body>
