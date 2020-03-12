@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        
+        table,td,th{
+            border:1px solid black;
+            border-collapse: collapse;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 4px;
+           
+        }
+       
+        th,td {
+        cursor: pointer;
+        font-size: 16px;
+        /* padding: 8px; */
+        }
+
+        fieldset {
+        border-color: rgba(252, 7, 7, 0);
+        background-image: url(https://webgradients.com/public/webgradients_png/031%20Blessing.png);
+        background-size: 500px;
+        font-size:16px; 
+        /* width:700px; */
+        margin-left: 100px;
+        margin-right: 100px;
+        line-height:1.8;}
+    </style>
+
+<!-- Form Filter -->
+<fieldset>
+    <legend>Filter:</legend>
+   
+    <p>Nama : <input type="text" name="namaProduk" id="namaProduk" 
+                placeholder="Masukkan nama produk" onkeydown="filterData()"> </p>
+    <p>Harga :
+        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min" onkeydown="filterData(this)"> -
+        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max" onkeydown="filterData(this)"> 
+    </p>
+    <p>
+        Category :
+            <select id="filterKategori" onkeydown="filterData()">
+                <option disabled selected value="Default">Select Product Category</option>
+                <option value="Fast Food">Fast Food</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Cloth">Cloth</option>
+                <option value="Fruit">Fruitc</option>
+            </select>
+    </p>
+
+<!-- Form Input Data -->
+   </fieldset>
+
+   <fieldset>
+    <legend>Input Data:</legend>
+    <table>
+        <tr>
+            <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk" > </td>
+            <td><input  type="buton" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
+            <td>
+                <select name="kategoriProduk" id="kategoriProduk">
+                    <option disabled selected value="Default">Select Product Category</option>
+                    <option value="Fast Food">Fast Food</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Cloth">Cloth</option>
+                    <option value="Fruit">Fruit</option>
+                </select>
+            </td>  
+            <td><input type="text" name="inputStok" id="inputStok" placeholder="Stok">  </td>
+        </tr>
+      
+    </table>
+    <input type="button"  name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()">
+   </fieldset>
+   
+
+   <!-- Form Tabel Data -->
+
+   <fieldset>
+   <legend>Tabel Data:</legend>
+   <table>
+       <thead>
+           <th>Id</th>
+           <th>Category</th>
+           <th>Nama</th>
+           <th>Price</th>
+           <th>Stok</th>
+           <th>Buy</th>
+           <th colspan="2">Action</th>
+       </thead>
+       <tbody id="tampilData">
+
+       </tbody>
+   </table>
+   </fieldset>
+
+   <!-- Form Cart -->
+   <fieldset>
+        
+    <legend>Cart:</legend>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Nama</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th colspan="2">Action</th>
+          
+            <td> </td>
+        </tr>
+    </table>
+    </fieldset>
+
+    <!-- Form Payment -->
+    <fieldset>
+        <legend>Payment:</legend>
+    </fieldset>
+
+<script src="./srcJavaScript.js">
+    
+
+</script>
+</body>
+</html>

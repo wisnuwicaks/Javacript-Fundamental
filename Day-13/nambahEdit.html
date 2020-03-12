@@ -113,7 +113,7 @@
             <th>Nama</th>
             <th>Price</th>
             <th>Qty</th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
           
             <td> </td>
         </tr>
@@ -200,11 +200,16 @@
                             <td><center>${harga}</td>
                                 <td><center>${stok}</td>`
                                 }
+              
                 if(indexTarget !==-1)
                 {
                     // alert(fieldEdit)
                     tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
                 }
+                if (index !== indexTarget){
+                    tombolSave = ''
+                }
+             
                 stringData += `
                 <tr>
                 ${fieldEdit}
@@ -216,7 +221,9 @@
                 </td>
                 </tr>  
                 ` 
-            });
+                tombolSave = ''
+            }
+            );
         
             document.getElementById("tampilData").innerHTML=stringData
             
@@ -308,7 +315,7 @@
 
         function saveData(index)
         {
-            alert(index)
+            // alert(index)
             let gantiId = document.getElementById("idLama").value *1
             let gantiKategori = document.getElementById("kategoriLama").value
             let gantiNama = document.getElementById("namaLama").value
