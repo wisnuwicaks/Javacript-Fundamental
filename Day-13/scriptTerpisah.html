@@ -40,14 +40,14 @@
     <p>Nama : <input type="text" name="namaProduk" id="namaProduk" 
                 placeholder="Masukkan nama produk" onkeyup="filterData()"> </p>
     <p>Harga :
-        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min" onkeydown="filterData(this)"> -
-        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max" onkeydown="filterData(this)"> 
+        <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min" onkeyup="filterData()"> -
+        <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max" onkeyup="filterData()"> 
     </p>
     <p>
         Category :
             <select id="filterKategori" onchange="filterData()">
-                <option disabled selected value="Default">Select Product Category</option>
-                <option value="All">All</option>
+                <option disabled >Select Product Category</option>
+                <option selected value="All">All</option>
                 <option value="Fast Food">Fast Food</option>
                 <option value="Electronic">Electronic</option>
                 <option value="Cloth">Cloth</option>
