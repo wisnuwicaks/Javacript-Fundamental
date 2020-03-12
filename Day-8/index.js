@@ -104,9 +104,29 @@
 
 // console.log(terimaArray(arrJumlah))
 
-let tgl = '10-06-2020'
-let arrTgl = tgl.split('-')
-let hasil = new Date(arrTgl[2],arrTgl[1]-1,arrTgl[0])
+// let tgl = '10-06-2020'
+// let arrTgl = tgl.split('-')
+// let hasil = new Date(arrTgl[2],arrTgl[1]-1,arrTgl[0])
 
-let a = new Date()
-console.log(hasil)
+// let a = new Date()
+// console.log(hasil)
+
+function compare(a, b) {
+    if (a>b) {
+      return -1;
+    }
+    if (a<b) {
+      return 1;
+    }
+    return 0;
+  }
+  
+  let a = [1,6,3,5,7,8]
+  a.sort(compare)
+  console.log(a)
+
+  const b = ()=>{
+      return 1
+  }
+
+  console.log(b())

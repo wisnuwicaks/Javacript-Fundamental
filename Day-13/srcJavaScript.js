@@ -36,21 +36,22 @@ class Fruit extends Produk {
     }
 }
 
+
     let dataProduct = [
-                new FastFood(123,"Fast Food",'Burger',1000,5,0),
-                new FastFood(234,"Fast Food",'Pizza',1000,5,0),  
-                new Electronic(345,"Electronic",'Bur HP',1000,5,0),
-                new Electronic(456,"Electronic",'Laptop',1000,5,0),
-                new Cloth(567,"Cloth",'Indomaret',1000,5,0),
-                new Cloth(678,"Cloth",'Alfamart',1000,5,0),
-                new Fruit(789,"Fruit",'Mangga',1000,5,0), 
-                new Fruit(890,"Fruit",'Jeruk',1000,5,0)
+                new Produk(123,"Fast Food",'Burger',1000,5,0),
+                new Produk(234,"Fast Food",'Pizza',1000,5,0),  
+                new Produk(345,"Electronic",'Bur HP',1000,5,0),
+                new Produk(456,"Electronic",'Laptop',1000,5,0),
+                new Produk(567,"Cloth",'Indomaret',1000,5,0),
+                new Produk(678,"Cloth",'Alfamart',1000,5,0),
+                new Produk(789,"Fruit",'Mangga',1000,5,0), 
+                new Produk(890,"Fruit",'Jeruk',1000,5,0)
                 ]
 
    
 
-    const selectorId = (id) =>{
-        return document.getElementById(id).value
+    const selectorId = (id) => {
+        return document.getElementById(id)
     }
     
     function renderData(arr = dataProduct,stringEdit,indexTarget=-1){
@@ -87,7 +88,7 @@ class Fruit extends Produk {
             stringData += `
             <tr>
             ${fieldEdit}
-            <td><input type="button" id="addCart" value="BUY" onclick = "addCart(${index})"></td>
+            <td><input type="button" id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
             <td>
                 <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${index})">
             </td>
@@ -109,25 +110,29 @@ class Fruit extends Produk {
     // document.getElementById("editDataBtn").style.display="block";
     // document.getElementById("saveDataBtn").style.display="none";
     function filterData(){
-        if(event.keyCode == 13) {
+        // if(event.keyCode == 13) {
     //alert(ele.value);        
     let arrFiltered = []
         // let namaProduk = document.getElementById("namaProduk").value.toLowerCase()
-        let namaProduk = selectorId("namaProduk").toLowerCase()
-        let hargaMin = parseInt(selectorId("hargaMin"))
-        let hargaMax = parseInt(selectorId("hargaMax"))
-        let filterKategori = selectorId("filterKategori")
+        let namaProduk = selectorId("namaProduk").value.toLowerCase()
+        let hargaMin = parseInt(selectorId("hargaMin")).value
+        let hargaMax = parseInt(selectorId("hargaMax")).value
+        let filterKategori = selectorId("filterKategori").value
       
         dataProduct.forEach(({id,kategori,nama,harga,stok},index) => {
             if (nama.toLowerCase().startsWith(namaProduk) && 
-                (filterKategori==kategori) ) {
+                kategori==filterKategori ) {
                 arrFiltered.push(dataProduct[index])
             }
+            else if(filterKategori=="Default"){
+                arrFiltered.push(dataProduct[index])
+            }
+           
         });
         
         // alert(filterKategori)
         renderData(arrFiltered)
-    }
+    // }
     }
 
     const inputData = () =>{
@@ -139,18 +144,9 @@ class Fruit extends Produk {
         let pushParam
       
         if (inputNama !=='' && kategoriProduk !=="Default" && inputStok !=='' && inputStok !==NaN){
-            if (kategoriProduk=="Fast Food"){
-            pushParam = new FastFood(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
-            }
-            else if(kategoriProduk=="Electronic"){
-                pushParam = new FastFood(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
-            }
-            else if(kategoriProduk=="Cloth") {
-                pushParam = new Cloth(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
-            }    
-            else if(kategoriProduk=="Fruit"){
-                pushParam = new Fruit(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
-            }
+            
+            pushParam = new Produk(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
+            
             dataProduct.push(pushParam)
         }
         else{
@@ -161,6 +157,7 @@ class Fruit extends Produk {
     }
 
     const deleteData = (index) =>{
+       
         dataProduct.splice(index,1)
         renderData()
     }
@@ -176,11 +173,11 @@ class Fruit extends Produk {
 
     dataProduct.forEach(({id,kategori,nama,harga,stok},indexEdit) => {
             if (indexEdit==index) {
-                stringEdit += `<td><input id="idLama" value="${id}"></td>
-                    <td><input id="kategoriLama" value="${kategori}""></td>
-                        <td><input id="namaLama" value="${nama}"></td>
-                            <td><input id="hargaLama" value="${harga}"></td>
-                                <td><input id="stokLama" value="${stok}"> </td>
+                stringEdit += `<td><center>${id}</td>
+                    <td><center>${kategori}</td>
+                    <td><input id="namaLama" value="${nama}"></td>
+                    <td><input id="hargaLama" value="${harga}"></td>
+                    <td><input id="stokLama" value="${stok}"> </td>
                     `
                     
             }
@@ -205,3 +202,49 @@ class Fruit extends Produk {
         // document.getElementById("saveDataBtn").style.display="none";
 
     }
+
+    let arrCart = []
+    const addToCart = (id) =>{
+   
+    let item = dataProduct.find ((val) =>val.id==id)
+        alert(item.nama)
+        let isiInCart = arrCart.find((val) => val.id==item.id)
+        if (isiInCart){
+            let idx = arrCart.findIndex((val) => val.id==isiInCart.id)
+            arrCart[idx].qty++
+        }
+        else{
+            let newCartItem = {
+                ...item,qty:1
+            }
+            arrCart.push(newCartItem)
+        }
+        renderCart()
+    }
+
+    const renderCart = () =>{
+        let hasil = ''
+        arrCart.forEach((val) => {
+            let {id,kategori,nama,harga,qty} = val
+            hasil +=`
+            <tr>
+            <td><center>${id}</td> 
+            <td><center>${kategori}</td>
+            <td><center>${nama}</td> 
+            <td><center>${harga}</td>
+            <td><center>${qty}</td>
+            </tr>
+            `
+        })
+     
+        
+        selectorId("cartTable").innerHTML=hasil
+        
+    }
+
+    if(dataProduct.length ==0)
+    {
+    renderCart()
+    }
+
+    

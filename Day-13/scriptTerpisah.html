@@ -38,19 +38,20 @@
     <legend>Filter:</legend>
    
     <p>Nama : <input type="text" name="namaProduk" id="namaProduk" 
-                placeholder="Masukkan nama produk" onkeydown="filterData()"> </p>
+                placeholder="Masukkan nama produk" onkeyup="filterData()"> </p>
     <p>Harga :
         <input type="text" name="hargaMin" id="hargaMin" placeholder="Masukkan harga min" onkeydown="filterData(this)"> -
         <input type="text" name="hargaMax" id="hargaMax" placeholder="Masukkan harga max" onkeydown="filterData(this)"> 
     </p>
     <p>
         Category :
-            <select id="filterKategori" onkeydown="filterData()">
+            <select id="filterKategori" onchange="filterData()">
                 <option disabled selected value="Default">Select Product Category</option>
+                <option value="All">All</option>
                 <option value="Fast Food">Fast Food</option>
                 <option value="Electronic">Electronic</option>
                 <option value="Cloth">Cloth</option>
-                <option value="Fruit">Fruitc</option>
+                <option value="Fruit">Fruit</option>
             </select>
     </p>
 
@@ -105,6 +106,7 @@
         
     <legend>Cart:</legend>
     <table>
+    <thead>
         <tr>
             <th>Id</th>
             <th>Category</th>
@@ -113,8 +115,11 @@
             <th>Qty</th>
             <th colspan="2">Action</th>
           
-            <td> </td>
         </tr>
+    </thead>
+        <tbody id="cartTable">
+
+        </tbody>
     </table>
     </fieldset>
 
