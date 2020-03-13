@@ -25,7 +25,7 @@ const caesarCipher = (word, num) => {
     return shiftedWord
 
 }
-console.log('Hasil caesar cipher :' +caesarCipher('abc', 1))
+console.log('Hasil caesar cipher :' +caesarCipher('abc', 28))
 
 
 //============Fungsi Plus Minus===========//
@@ -46,9 +46,9 @@ console.log(`Hasil fungsi plusMinus : ` + plusMinus(numArr))
 
 
 //============Fungsi Palindrom===========//
-let stringUji = 'PagaP'
+let stringUji = 'Nurses Run'
 const isPalindrome = (isPalindrome) => {
-    return isPalindrome.toLowerCase()==(isPalindrome.toLowerCase().split('').reverse().join(''))
+    return isPalindrome.toLowerCase().replace(/\s/gi,'')==(isPalindrome.toLowerCase().replace(/\s/gi,'').split('').reverse().join(''))
 }
 
 console.log(`Apakah kata ${stringUji} palindrom? `+isPalindrome(stringUji))

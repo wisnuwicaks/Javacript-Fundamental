@@ -67,38 +67,25 @@ class Fruit extends Produk {
             if (index == indexTarget){
                 fieldEdit = stringEdit
                 alert("masuk field edit")
+                // tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
+                // tombolBuy = `<input type="button" disabled id="addCart" value="BUY" onclick = "addToCart(${id})">`
             }
             else{
             fieldEdit = `<td><center>${id}</td> 
                 <td><center>${kategori}</td>
-                    <td><center>${nama}</td> 
-                        <td><center>${harga}</td>
-                            <td><center>${stok}</td>`
-                            }
-          
-            if(indexTarget !==-1)
-            {
-                // alert(fieldEdit)
-                tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
+                <td><center>${nama}</td> 
+                <td><center>${harga}</td>
+                <td><center>${stok}</td>
+                <td><input type="button" id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
+                <td><input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${index})"></td>
+                <td><input type="button" id="deleteDataBtn" value="DELETE" onclick = "deleteData(${id})"></td>
+                `
             }
-            if (index !== indexTarget){
-                tombolSave = ''
-            }
-         
             stringData += `
             <tr>
             ${fieldEdit}
-            <td><input type="button" id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
-            <td>
-                <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${id})">
-            </td>
-            <td> 
-                <input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${index})">
-                ${tombolSave}
-            </td>
             </tr>  
             ` 
-            tombolSave = ''
         }
         );
     
@@ -109,6 +96,7 @@ class Fruit extends Produk {
     renderData()
     // document.getElementById("editDataBtn").style.display="block";
     // document.getElementById("saveDataBtn").style.display="none";
+    // let arrFiltered = []
     function filterData(){
         // if(event.keyCode == 13) {
     //alert(ele.value);        
@@ -119,10 +107,8 @@ class Fruit extends Produk {
         let hargaMax = selectorId("hargaMax").value
         let filterKategori = selectorId("filterKategori").value.toLowerCase()
         
-        
         dataProduct.forEach(({id,kategori,nama,harga,stok},index) => {
             
-      
             if((nama.toLowerCase().startsWith(namaProduk)||namaProduk=="") &&
                 (kategori.toLowerCase().startsWith(filterKategori) || filterKategori=='all') && 
                 (harga >= hargaMin) && //jika hargaMin ='' maka harga akan selalu lebih besar dari '' >> hargaMin>='' maka selalu true jika kosong
@@ -151,9 +137,7 @@ class Fruit extends Produk {
         let pushParam
       
         if (inputNama !=='' && kategoriProduk !=="Default" && inputStok !=='' && inputStok !==NaN){
-            
             pushParam = new Produk(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
-            
             dataProduct.push(pushParam)
         }
         else{
@@ -164,7 +148,6 @@ class Fruit extends Produk {
     }
 
     const deleteData = (id) =>{
-      
         dataProduct.splice(dataProduct.indexOf(dataProduct.id),1)
         arrCart.splice(arrCart.indexOf(arrCart.id),1)
         renderData()
@@ -182,11 +165,15 @@ class Fruit extends Produk {
 
     dataProduct.forEach(({id,kategori,nama,harga,stok},indexEdit) => {
             if (indexEdit==index) {
-                stringEdit += `<td><center>${id}</td>
+                stringEdit += `
+                    <td><center>${id}</td>
                     <td><center>${kategori}</td>
                     <td><input id="namaLama" value="${nama}"></td>
                     <td><input id="hargaLama" value="${harga}"></td>
                     <td><input id="stokLama" value="${stok}"> </td>
+                    <td><input type="button" disabled id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
+                    <td><input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})"></td>
+                    <td><input type="button" id="cancelDataBtn" value="CANCEL" onclick = "renderData(dataProduct)"></td>
                     `     
             }
         });
@@ -206,8 +193,7 @@ class Fruit extends Produk {
 
         dataProduct[index] = new FastFood(gantiId,gantiKategori,gantiNama,gantiHarga,gantiStok)
         renderData()
-        // document.getElementById("editDataBtn").style.display="block";
-        // document.getElementById("saveDataBtn").style.display="none";
+    
 
     }
 
