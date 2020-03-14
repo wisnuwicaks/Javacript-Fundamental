@@ -117,15 +117,23 @@
           
         </tr>
     </thead>
-        <tbody id="cartTable">
+    <tbody id="cartTable">
 
-        </tbody>
+    </tbody>
     </table>
+    <input type="button" id="paymentBtn" value="PAYMENT" onclick="payment()">
     </fieldset>
 
     <!-- Form Payment -->
-    <fieldset>
+    <fieldset >
         <legend>Payment:</legend>
+        <h1>Transcation Detail</h1>
+        <P id="payment">
+            
+        </P>
+        <input type="number" name="pay" id="pay" placeholder="Masuk sejumlah uang">
+        <input type="button" name="payBtn" value="PAY" id="payBtn" onclick="payProcess()">
+        <p id="paymentResponse"></p>
     </fieldset>
 
 <script src="./srcJavaScript.js">

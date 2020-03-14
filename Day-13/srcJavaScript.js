@@ -48,8 +48,6 @@ class Fruit extends Produk {
                 new Produk(890,"Fruit",'Jeruk',8000,5,0)
                 ]
 
-   
-
     const selectorId = (id) => {
         return document.getElementById(id)
     }
@@ -61,8 +59,7 @@ class Fruit extends Produk {
         //     for(i=0;i<element.length;i++)
         //     objAllProduct.push(element[i])
         // })
-        let fieldEdit =''
-        let tombolSave = ''
+       
         arr.forEach(({id,kategori,nama,harga,stok},index) => {
             if (index == indexTarget){
                 fieldEdit = stringEdit
@@ -94,14 +91,13 @@ class Fruit extends Produk {
     }
     
     renderData()
-    // document.getElementById("editDataBtn").style.display="block";
-    // document.getElementById("saveDataBtn").style.display="none";
-    // let arrFiltered = []
+   
+    let arrFiltered = []
+
     function filterData(){
         // if(event.keyCode == 13) {
-    //alert(ele.value);        
-    let arrFiltered = []
-        // let namaProduk = document.getElementById("namaProduk").value.toLowerCase()
+    
+        arrFiltered = []
         let namaProduk = selectorId("namaProduk").value.toLowerCase()
         let hargaMin = selectorId("hargaMin").value
         let hargaMax = selectorId("hargaMax").value
@@ -178,8 +174,10 @@ class Fruit extends Produk {
             }
         });
  
-
-        renderData(dataProduct,stringEdit,indexKirim)
+        if(arrFiltered.length){
+        renderData(arrFiltered,stringEdit,indexKirim)
+        }
+        else{renderData(dataProduct,stringEdit,indexKirim)}
     }
 
     function saveData(index)
@@ -196,14 +194,14 @@ class Fruit extends Produk {
     
 
     }
-
     let arrCart = []
+  
     const addToCart = (id) =>{
    
         let item
     // let item = dataProduct.find ((val) =>val.id==id) //pertanyaan
         
-
+    
         dataProduct.forEach((element) => {
             if (element.id==id){
                 item = element
@@ -248,6 +246,44 @@ class Fruit extends Produk {
         selectorId("cartTable").innerHTML=hasil
     }
 
+    let  subtotal = 0
+    const payment = () =>{
+        let payment = ''
+        judul = `<h1>Transaction Detail </h1>`
+        fieldBayar = `<input type="number" id="bayar" placeholder="masukan jumlah uang">`
+        arrCart.forEach(({kategori,nama,harga,qty}) => {
+            payment +=`    
+            ${kategori} | ${nama} | ${harga} X ${qty} = Rp.${harga*qty} <br>`
+        });
+
+      
+        arrCart.forEach(({harga,qty}) => {
+            subtotal+= harga*qty
+        });
+        total = Math.round(subtotal *(110/100))
+        ppn = subtotal *(10/100)
+        payment += `<strong> <p> Subtotal : ${subtotal} </p> 
+                    <p>PPN : ${ppn}</p>
+                    <p>Total : ${total}</p></strong>`
+
+
+        selectorId("payment").innerHTML=payment
+    }
+
+    const payProcess = () =>{
+        let pay = selectorId("pay").value*1
+        let paymentResponse = ''
+        if (pay>total){
+            paymentResponse = `Kembalian anda = ${pay-total}`
+        }
+        else if(pay==total){
+            paymentResponse = `Terimakasih sudah membayar dengan uang pas`
+        }
+        else if(pay<total){
+            paymentResponse = `Maaf uang anda kurang ${total-pay}`
+        }
+        selectorId("paymentResponse").innerHTML=paymentResponse
+    }
     
 
     
