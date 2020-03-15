@@ -213,7 +213,9 @@ class Fruit extends Produk {
             let idx = arrCart.findIndex((val) => val.id==isiInCart.id)
             if(arrCart[idx].qty<arrCart[idx].stok){
             arrCart[idx].qty++
-            // alert(arrCart[idx].qty)
+          
+            dataProduct[dataProduct.indexOf(item)].stok -=1
+            
             }
             else{alert("stok tidak mencukupi")}
         }
@@ -221,9 +223,12 @@ class Fruit extends Produk {
             let newCartItem = {
                 ...item,qty:1
             }
+            dataProduct[dataProduct.indexOf(item)].stok -=1
             arrCart.push(newCartItem)
+
         }
         renderCart()
+        renderData()
     }
 
     const renderCart = () =>{
