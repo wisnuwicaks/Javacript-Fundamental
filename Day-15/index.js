@@ -17,7 +17,9 @@ hasil = ''
 
 }
 
-console.log(tripleTrouble('aa','bb','cc'))
+console.log(tripleTrouble('ab','cd','ef'))
+
+
 const altCaps = (string) => {
   // Buatlah sebuah function yang menerima sebuah string
   // Outputnya sebuah array yang index pertama adalah semua 
@@ -28,4 +30,23 @@ const altCaps = (string) => {
   // Output: ["AbCdEf", "aBcDeF"]
 
   // write your code here
+  output = []
+  lowercase = string.toLowerCase()
+  uppercase = string.toUpperCase()
+
+    ganjilUpper = ''
+    genapUpper = ''
+    for(i=0;i<lowercase.length;i+=2){
+      ganjilUpper +=uppercase[i]
+      ganjilUpper +=lowercase[i+1]
+      genapUpper +=lowercase[i]
+      genapUpper +=uppercase[i+1]
+    }
+    output.push(ganjilUpper)
+    output.push(genapUpper)
+  
+  return output
+
 }
+
+console.log(altCaps('JavaScript'))
