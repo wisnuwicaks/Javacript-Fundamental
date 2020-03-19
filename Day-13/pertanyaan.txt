@@ -1,8 +1,0 @@
-sort() 
-arr.sort((a,b) => a-b);
-
-map()
-filter()
-for of 
-for in
-

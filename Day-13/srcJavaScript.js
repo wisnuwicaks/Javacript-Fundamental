@@ -52,7 +52,7 @@ class Fruit extends Produk {
         return document.getElementById(id)
     }
     
-    function renderData(arr = dataProduct,stringEdit,indexTarget=-1){
+    function renderData(arr = dataProduct,stringEdit,idTarget=-1){
         let stringData = ''
         //alert('dirender:'+stringEdit)
         // arr.forEach(element => {
@@ -61,7 +61,7 @@ class Fruit extends Produk {
         // })
        
         arr.forEach(({id,kategori,nama,harga,stok},index) => {
-            if (index == indexTarget){
+            if (id == idTarget){
                 fieldEdit = stringEdit
                 alert("masuk field edit")
                 // tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
@@ -74,7 +74,7 @@ class Fruit extends Produk {
                 <td><center>${harga}</td>
                 <td><center>${stok}</td>
                 <td><input type="button" id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
-                <td><input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${index})"></td>
+                <td><input type="button" id="editDataBtn" value="EDIT" onclick = "editData(${id})"></td>
                 <td><input type="button" id="deleteDataBtn" value="DELETE" onclick = "deleteData(${id})"></td>
                 `
             }
@@ -151,16 +151,13 @@ class Fruit extends Produk {
     }
   
 
-    function editData(index)
+    function editData(idEdit)
     {
         let stringEdit = ''
-   // alert(index)
-   let indexKirim = index
-    // document.getElementById("editDataBtn").style.display="none";
-    // document.getElementById("saveDataBtn").style.display="block";
+        
 
     dataProduct.forEach(({id,kategori,nama,harga,stok},indexEdit) => {
-            if (indexEdit==index) {
+            if (idEdit==id) {
                 stringEdit += `
                     <td><center>${id}</td>
                     <td><center>${kategori}</td>
@@ -168,16 +165,16 @@ class Fruit extends Produk {
                     <td><input id="hargaLama" value="${harga}"></td>
                     <td><input id="stokLama" value="${stok}"> </td>
                     <td><input type="button" disabled id="addCart" value="BUY" onclick = "addToCart(${id})"></td>
-                    <td><input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})"></td>
+                    <td><input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${indexEdit})"></td>
                     <td><input type="button" id="cancelDataBtn" value="CANCEL" onclick = "renderData(dataProduct)"></td>
                     `     
             }
         });
  
         if(arrFiltered.length){
-        renderData(arrFiltered,stringEdit,indexKirim)
+        renderData(arrFiltered,stringEdit,idEdit)
         }
-        else{renderData(dataProduct,stringEdit,indexKirim)}
+        else{renderData(dataProduct,stringEdit,idEdit)}
     }
 
     function saveData(index)
@@ -191,8 +188,6 @@ class Fruit extends Produk {
 
         dataProduct[index] = new FastFood(gantiId,gantiKategori,gantiNama,gantiHarga,gantiStok)
         renderData()
-    
-
     }
     let arrCart = []
   
@@ -288,6 +283,9 @@ class Fruit extends Produk {
             paymentResponse = `Maaf uang anda kurang ${total-pay}`
         }
         selectorId("paymentResponse").innerHTML=paymentResponse
+        arrCart=[]
+        renderCart()
+        selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
     }
     
 

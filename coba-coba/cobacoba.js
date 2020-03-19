@@ -88,10 +88,30 @@
 
 // console.log(openOrSenior([[45, 12],[55,21],[19, -2],[104, 20]]))
 
-var number = function(busStops){
-  // Good Luck!
-  return busStops.map(([a,b])=>a-b).reduce((a,b)=>a+b,0)
-  // parameter a,b yaitu a=totalSaatini, b=elementSaatini, 0 adalah jumlah awal a
-}
+// var number = function(busStops){
+//   // Good Luck!
+//   return busStops.map(([a,b])=>a-b).reduce((a,b)=>a+b,0)
+//   // parameter a,b yaitu a=totalSaatini, b=elementSaatini, 0 adalah jumlah awal a
+// }
 
-console.log(number([[10,0],[3,5],[5,8]]))
+// console.log(number([[10,0],[3,5],[5,8]]))
+// function arrayDiff(a, b) {
+//   for(arrB of b){
+//   a= a.filter(element => element !==arrB)
+//   }
+//   return a
+//   }
+
+// console.log(arrayDiff([1,2,2], [2]))
+
+// var str = "asdrfdxkuysww";
+// var re = /[^aiueo]+/g;
+// console.log((str.match(re)).join(''));
+
+function solve(s) {
+  alpha = "abcdefghijklmnopqrstuvwxyz".split('')
+  filterVowel = s.match(/[^aiueo]+/g).join('').split('').map(element=>alpha.indexOf(element)+1)
+  return Math.max(...filterVowel);
+};
+
+console.log(solve('wisnu'))
