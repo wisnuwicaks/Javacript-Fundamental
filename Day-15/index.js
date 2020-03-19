@@ -1,52 +1,40 @@
-const tripleTrouble = (one, two, three) => {
-  // Buatlah sebuah function yang menerima 3 string 
-  // dan setiap string memiliki panjang yang sama
-  // Input: "aa", "bb", "cc"
-  // Output: "abcabc"
+"use strict";
 
-  // Input: "ab", "cd", "ef"
-  // Output: "acebdf"
+const prettyHrtime = require('execution-time/node_modules/pretty-hrtime');
 
-  // write your code here
-hasil = ''
-  for(i=0;i<one.length;i++){
-    hasil += one[i] + two[i] +three[i]
+const namedPerformances = {};
+const defaultName = 'default';
 
-  }
-  return hasil
-
-}
-
-console.log(tripleTrouble('ab','cd','ef'))
-
-
-const altCaps = (string) => {
-  // Buatlah sebuah function yang menerima sebuah string
-  // Outputnya sebuah array yang index pertama adalah semua 
-  // huruf yg posisinya ganjil menjadi kapital, index kedua
-  // semua huruf yg posisinya genap jadi kapital
-
-  // Input: "abcdef"
-  // Output: ["AbCdEf", "aBcDeF"]
-
-  // write your code here
-  output = []
-  lowercase = string.toLowerCase()
-  uppercase = string.toUpperCase()
-
-    ganjilUpper = ''
-    genapUpper = ''
-    for(i=0;i<lowercase.length;i+=2){
-      ganjilUpper +=uppercase[i]
-      ganjilUpper +=lowercase[i+1]
-      genapUpper +=lowercase[i]
-      genapUpper +=uppercase[i+1]
+const performance = (logInstance) => {
+  return {
+    start: (name) => {
+      name = name || defaultName;
+      namedPerformances[name] = {
+        startAt: process.hrtime(),
+      }
+    },
+    stop: (name) => {
+      name = name || defaultName;
+      const startAt = namedPerformances[name] && namedPerformances[name].startAt;
+      if(!startAt) throw new Error('Namespace: '+name+' doesnt exist');
+      const diff = process.hrtime(startAt);
+      const time = diff[0] * 1e3 + diff[1] * 1e-6;
+      const words = prettyHrtime(diff);
+      const preciseWords = prettyHrtime(diff, {precise:true});
+      const verboseWords = prettyHrtime(diff, {verbose:true});
+      if (logInstance) {
+        logInstance('Total Time:' + time);
+      }
+      
+      return {
+        name: name,
+        time: time,
+        words: words,
+        preciseWords: preciseWords,
+        verboseWords: verboseWords
+      };
     }
-    output.push(ganjilUpper)
-    output.push(genapUpper)
-  
-  return output
+  }
+};
 
-}
-
-console.log(altCaps('JavaScript'))
+module.exports = performance;
