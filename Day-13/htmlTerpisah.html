@@ -60,10 +60,11 @@
 
    <fieldset>
     <legend>Input Data:</legend>
+    <div>
     <table>
         <tr>
             <td><input type="text" name="inputNama" id="inputNama" placeholder="Nama Produk" > </td>
-            <td><input  type="buton" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
+            <td><input  type="number" name="inputHarga" id="inputHarga" placeholder="Harga">  </td>
             <td>
                 <select name="kategoriProduk" id="kategoriProduk">
                     <option disabled selected value="Default">Select Product Category</option>
@@ -74,10 +75,18 @@
                 </select>
             </td>  
             <td><input type="text" name="inputStok" id="inputStok" placeholder="Stok">  </td>
+            <td><input type="button"  name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()"></td>
         </tr>
-      
     </table>
-    <input type="button"  name="inputDataBtn" id="inputDataBtn" value="Input" onclick="inputData()">
+    
+    <br>
+    <table>
+        <tr>
+            <td><input type="text" name="addCategory" id="addCategory" placeholder="Masukkan kategori"></td>
+            <td><input type="button" id="addCategoryBtn" value="Add Category"></td>
+        </tr>
+    </table>
+    
    </fieldset>
    
 

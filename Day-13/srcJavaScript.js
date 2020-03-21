@@ -288,6 +288,42 @@ class Fruit extends Produk {
         selectorId("pay").value = ''
         selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
     }
+
+    // categoryAtInput = ''
+    // let addedElement = ''
+    tambahKategori = () =>{
+        
+        listFilterKategori = selectorId("filterKategori")
+        listKategoriProduk = selectorId("kategoriProduk")
+        tambahKategori = selectorId("addCategory").value
+        
+        textNode1 = document.createTextNode(tambahKategori)//membuat isi element option 
+        addCategoryOption1 = document.createElement('option')//membuat element = <option></option>
+        addCategoryOption1.appendChild(textNode1)//memasukkan isi element option =  <option> Isi Element </option>
+   
+        textNode2 = document.createTextNode(tambahKategori) 
+        addCategoryOption2 = document.createElement('option')
+        addCategoryOption2.appendChild(textNode2)
+
+        listFilterKategori.appendChild(addCategoryOption1)
+        listKategoriProduk.appendChild(addCategoryOption2)
+        let categoryAtFilter = listFilterKategori.getElementsByTagName('option')
+        let categoryAtInput = listKategoriProduk.getElementsByTagName('option')
+        categoryAtFilter[categoryAtFilter.length-1].setAttribute("value",tambahKategori)
+        categoryAtInput[categoryAtInput.length-1].setAttribute("value",tambahKategori)
+
+        selectorId("addCategory").value = ''
+       
+    }
+
+    //====pakai addEventListener======//
+    const tombolAddCategory = selectorId('addCategoryBtn')
+    tombolAddCategory.addEventListener('click',tambahKategori)
+
+    //====pakai onclick handler======//
+    // const elementAddCategory = selectorId('addCategoryBtn')
+    // elementAddCategory.onclick = tambahKategori
+
     
 
     
