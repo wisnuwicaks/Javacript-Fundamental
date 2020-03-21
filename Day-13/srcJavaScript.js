@@ -187,7 +187,7 @@ class Fruit extends Produk {
         let gantiStok = document.getElementById("stokLama").value *1
 
         dataProduct[index] = new FastFood(gantiId,gantiKategori,gantiNama,gantiHarga,gantiStok)
-        renderData()
+        filterData()
     }
     let arrCart = []
   
@@ -285,6 +285,7 @@ class Fruit extends Produk {
         selectorId("paymentResponse").innerHTML=paymentResponse
         arrCart=[]
         renderCart()
+        selectorId("pay").value = ''
         selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
     }
     
