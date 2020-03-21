@@ -118,7 +118,7 @@ class Fruit extends Produk {
         if (arrFiltered.length > 0) {
             renderData(arrFiltered);
           } else if(arrFiltered.length==0){
-            selectorId("tampilData").innerHTML='<h1>NO DATA</h1>'
+            selectorId("tampilData").innerHTML='<td colspan="7"><center>NO DATA</td>'
           }
         // renderData(arrFiltered)
     }
