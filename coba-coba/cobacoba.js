@@ -108,10 +108,44 @@
 // var re = /[^aiueo]+/g;
 // console.log((str.match(re)).join(''));
 
-function solve(s) {
-  alpha = "abcdefghijklmnopqrstuvwxyz".split('')
-  filterVowel = s.match(/[^aiueo]+/g).join('').split('').map(element=>alpha.indexOf(element)+1)
-  return Math.max(...filterVowel);
-};
+// function solve(s) {
+//   alpha = "abcdefghijklmnopqrstuvwxyz".split('')
+//   filterVowel = s.match(/[^aiueo]+/g).join('').split('').map(element=>alpha.indexOf(element)+1)
+//   return Math.max(...filterVowel);
+// };
 
-console.log(solve('wisnu'))
+// console.log(solve('wisnu'))
+
+// ukuran = 5
+// hasil = ''
+// for(i=1;i<=ukuran;i++){
+//   for(a=1;a<=ukuran-i;a++){
+//       hasil += ' '
+//   }
+//   for(b=1;b<=i;b++){
+//       hasil +=`*`
+//   }
+//   hasil +=`\n`
+// }
+
+// console.log(hasil)
+
+// ukuran = 5
+// hasil = ''
+// for(i=1;i<=ukuran;i++){
+//   for(a=1;a<=ukuran;a++){
+//       hasil +=`*`
+//   }
+//   hasil +=`\n`
+// }
+// console.log(hasil)
+
+
+const jumlah = (a,b)=>{
+  if(b){
+    return 'haha'
+  }
+  return typeof (a)
+}
+
+console.log(jumlah(2,2))
