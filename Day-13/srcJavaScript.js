@@ -125,10 +125,10 @@ class Fruit extends Produk {
 
 
     const inputData = () =>{
-        let inputNama = document.getElementById("inputNama").value
-        let inputHarga = parseInt(document.getElementById("inputHarga").value)
-        let kategoriProduk = document.getElementById("kategoriProduk").value
-        let inputStok = document.getElementById("inputStok").value *1
+        let inputNama = selectorId("inputNama").value
+        let inputHarga = parseInt(selectorId("inputHarga").value)
+        let kategoriProduk = selectorId("kategoriProduk").value
+        let inputStok = selectorId("inputStok").value *1
 
         let pushParam
       
@@ -141,6 +141,10 @@ class Fruit extends Produk {
         }
         alert(inputNama,inputHarga,inputStok,kategoriProduk)
         renderData()
+        selectorId("inputNama").value = ''
+        selectorId("inputHarga").value =''
+        selectorId("kategoriProduk").value =''
+        selectorId("inputStok").value =''
     }
 
     const deleteData = (id) =>{
