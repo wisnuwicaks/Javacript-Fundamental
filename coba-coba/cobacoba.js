@@ -141,11 +141,20 @@
 // console.log(hasil)
 
 
-const jumlah = (a,b)=>{
-  if(b){
-    return 'haha'
-  }
-  return typeof (a)
-}
+// const jumlah = (a,b)=>{
+//   if(b){
+//     return 'haha'
+//   }
+//   return typeof (a)
+// }
 
-console.log(jumlah(2,2))
+// console.log(jumlah(2,2))
+
+
+var person = {fname:"John", lname:"Doe", age:25}; 
+  
+var text = "";
+var x;
+for (x in person) {
+  text += person[x] + " ";
+}

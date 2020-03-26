@@ -146,10 +146,9 @@ class Fruit extends Produk {
     const deleteData = (idDiterima,deleteCart) =>{
         let indexProduct
         let indexArrCart
-        for(data of dataProduct){
+        for({id} of dataProduct){
             let {id}=data
-            if(id==idDiterima)
-            {
+            if(id==idDiterima){
                 indexProduct = dataProduct.indexOf(data)
             }
         }
@@ -271,10 +270,11 @@ class Fruit extends Produk {
         })
         selectorId("cartTable").innerHTML=hasil
     }
-
+    let interval = ''
     let  subtotal = 0
     let paymentDetail = ''
     const payment = () =>{
+     
         // paymentDetail = ''
         judul = `<h1>Transaction Detail </h1>`
         fieldBayar = `<input type="number" id="bayar" placeholder="masukan jumlah uang">`
@@ -295,17 +295,33 @@ class Fruit extends Produk {
 
         paymentDetail += `<input type="number" name="pay" id="pay" placeholder="Masuk sejumlah uang">
                     <input type="button" name="payBtn" value="PAY" id="payBtn" onclick="payProcess()">`
-        
-        
+
+        timer = document.createElement('p')
+        timer.setAttribute("id", "id")
+        coba =selectorId("payment").appendChild(timer)
+       
+        timeout=30
+        selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+        interval = setInterval(() => {
+            timeout--
+            selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+            if(timeout==0){
+                alert('waktu anda habis')
+                clearInterval(interval)
+                selectorId("paymentResponse").innerHTML=timeout
+            }
+        }, 1000);
+       
         selectorId("payment").innerHTML=paymentDetail
     }
     let pay =0
     const payProcess = () =>{
-        alert(paymentDetail)
+        clearInterval(interval)
+        selectorId("paymentResponse").innerHTML='<p>Selesai</p>'
+        
         let transaksiSelesai = false
         pay += selectorId("pay").value*1
-       
-        // alert('a/sa')
+      
             if (pay>total){
             alert(`Kembalian anda = ${pay-total}`)
             transaksiSelesai = true
