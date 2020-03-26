@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Drawing Tools</h1>
+    <p>1. Persegi</p>
+    <p>2. Segitiga Siku2 Rata Kiri</p>
+    <p>3. Segitiga Siku2 Rata Kanan</p>
+    <p> Jenis Bangunan : </p>
+    <input type="number" name="jenisBangun" id="jenisBangun">
+    <p>Ukuran :</p>
+    <input type="number" name="ukuran" id="ukuran">
+    <p> <input type="button" name="lihatBtn" id="lihatBtn" value="Lihat"></p>
+    <div id="hasil">
+
+    </div>
+</body>
+
+<script>
+    let elementHasil = document.getElementById('hasil')
+    const hitungBangun = () =>{
+        let jenisBangun = document.getElementById("jenisBangun").value
+        let ukuran = parseInt(document.getElementById("ukuran").value)
+        
+        banyakBintang = ''
+        hasil = ''
+        if (jenisBangun==1 ){//persegi
+            for(i=1;i<=ukuran;i++){
+                for(j=1;j<=ukuran;j++){
+                    hasil +=`*`
+                }
+                hasil +=`<br>`
+            }
+        
+            elementHasil.innerHTML=hasil
+        }
+        else if(jenisBangun==2){//segitiga siku rata kiri
+            
+            for(i=1;i<=ukuran;i++){
+                // banyakBintang +=`*`
+                for(a=1;a<=i;a++){
+                    hasil +=`*`
+                }
+                hasil +=`<br>`
+            }
+           
+            elementHasil.innerHTML=hasil
+        }
+        else if(jenisBangun==3){//rata kanan
+            alert('3')
+            for(i=1;i<=ukuran;i++){
+                for(a=1;a<=ukuran-i;a++){
+                    hasil +='&nbsp&nbsp'
+                }
+                for(b=1;b<=i;b++){
+                    hasil +=`*`
+                }
+                hasil +=`<br>`
+            }
+            elementHasil.innerHTML=hasil
+        }
+    }
+    lihatBtn.onclick = hitungBangun
+</script>
+</html>

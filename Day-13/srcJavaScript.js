@@ -147,9 +147,34 @@ class Fruit extends Produk {
         selectorId("inputStok").value =''
     }
 
-    const deleteData = (id) =>{
-        dataProduct.splice(dataProduct.indexOf(dataProduct.id),1)
-        arrCart.splice(arrCart.indexOf(arrCart.id),1)
+    const deleteData = (idDiterima,deleteCart) =>{
+        let indexProduct
+        let indexArrCart
+        for({id} of dataProduct){
+            let {id}=data
+            if(id==idDiterima){
+                indexProduct = dataProduct.indexOf(data)
+            }
+        }
+
+        for(data of arrCart){
+            let {id}=data
+            if(id==idDiterima)
+            {
+                indexArrCart = arrCart.indexOf(data)
+            }
+        }
+        //jika yang dihapus adalah cart, dataProduct tidak ikut terhapus
+        if(deleteCart){
+        dataProduct[indexProduct].stok += arrCart[indexArrCart].qty
+        arrCart.splice(indexArrCart,1)
+        
+        }
+        //jika yang dihapus adalah dataProduct maka cart ikut terhapus
+        else{
+            dataProduct.splice(indexProduct,1)
+            arrCart.splice(indexArrCart,1)
+        }
         renderData()
         renderCart()
     }
@@ -242,21 +267,23 @@ class Fruit extends Produk {
             <td><center>${harga}</td>
             <td><center>${qty}</td>
             <td>
-                <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${index})">
+                <input type="button" id="deleteData" value="DELETE" onclick = "deleteData(${id},true)">
             </td>
             </tr>
             `
         })
         selectorId("cartTable").innerHTML=hasil
     }
-
+    let interval = ''
     let  subtotal = 0
+    let paymentDetail = ''
     const payment = () =>{
-        let payment = ''
+     
+        // paymentDetail = ''
         judul = `<h1>Transaction Detail </h1>`
         fieldBayar = `<input type="number" id="bayar" placeholder="masukan jumlah uang">`
         arrCart.forEach(({kategori,nama,harga,qty}) => {
-            payment +=`    
+            paymentDetail +=`    
             ${kategori} | ${nama} | ${harga} X ${qty} = Rp.${harga*qty} <br>`
         });
 
@@ -266,31 +293,60 @@ class Fruit extends Produk {
         });
         total = Math.round(subtotal *(110/100))
         ppn = subtotal *(10/100)
-        payment += `<strong> <p> Subtotal : ${subtotal} </p> 
+        paymentDetail += `<strong> <p> Subtotal : ${subtotal} </p> 
                     <p>PPN : ${ppn}</p>
                     <p>Total : ${total}</p></strong>`
 
+        paymentDetail += `<input type="number" name="pay" id="pay" placeholder="Masuk sejumlah uang">
+                    <input type="button" name="payBtn" value="PAY" id="payBtn" onclick="payProcess()">`
 
-        selectorId("payment").innerHTML=payment
+        timer = document.createElement('p')
+        timer.setAttribute("id", "id")
+        coba =selectorId("payment").appendChild(timer)
+       
+        timeout=30
+        selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+        interval = setInterval(() => {
+            timeout--
+            selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+            if(timeout==0){
+                alert('waktu anda habis')
+                clearInterval(interval)
+                selectorId("paymentResponse").innerHTML=timeout
+            }
+        }, 1000);
+       
+        selectorId("payment").innerHTML=paymentDetail
     }
-
+    let pay =0
     const payProcess = () =>{
-        let pay = selectorId("pay").value*1
-        let paymentResponse = ''
-        if (pay>total){
-            paymentResponse = `Kembalian anda = ${pay-total}`
-        }
-        else if(pay==total){
-            paymentResponse = `Terimakasih sudah membayar dengan uang pas`
-        }
-        else if(pay<total){
-            paymentResponse = `Maaf uang anda kurang ${total-pay}`
-        }
-        selectorId("paymentResponse").innerHTML=paymentResponse
-        arrCart=[]
-        renderCart()
-        selectorId("pay").value = ''
-        selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
+        clearInterval(interval)
+        selectorId("paymentResponse").innerHTML='<p>Selesai</p>'
+        
+        let transaksiSelesai = false
+        pay += selectorId("pay").value*1
+      
+            if (pay>total){
+            alert(`Kembalian anda = ${pay-total}`)
+            transaksiSelesai = true
+            }
+            else if(pay==total){
+            alert(`Terimakasih sudah membayar dengan uang pas`)
+            transaksiSelesai = true
+            }
+            else if(pay<total){
+            alert(`Maaf uang anda kurang ${total-pay}`)
+            selectorId("pay").value=''
+            selectorId("payment").innerHTML=paymentDetail
+            
+            }
+        
+            if(transaksiSelesai==true){
+            pay = 0
+            arrCart=[]
+            renderCart()
+            selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
+            }
     }
 
     // categoryAtInput = ''

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stopwatch</h1>
+    
+    <p> <input type="button" name="start" id="start" value="START">
+        <input type="button" name="stop" id="stop" value="STOP"></p>
+    <p> <input type="button" name="reset" id="reset" value="RESET">
+        <input type="button" name="lap" id="lap" value="LAP"></p>
+   
+    
+    <div id="hasil"></div>
+    <div id="putaran"> </div>
+</body>
+
+<script>
+    let start = document.getElementById('start')
+    let stop = document.getElementById('stop')
+    let lap = document.getElementById('lap')
+    let reset = document.getElementById('reset')
+    let putaran= document.getElementById('putaran')
+    let hasil = document.getElementById("hasil")
+
+    let interval
+    let lapKe = 1
+    let nolHour=0; let nolMinute=0; let nolSecond=0;
+    let ms=0; let second=0; let minute=0; let hour = 0;
+    catat = ''
+
+    //fungsi untuk menampung variabel timer
+    let variabelWaktu = ()=>{
+        return catat = `${nolHour}${hour}:${nolMinute}${minute}:${nolSecond}${second}:${ms}`
+    }
+
+    // catat = `${nolHour}${hour}:${nolMinute}${minute}:${nolSecond}${second}:${ms}`
+    variabelWaktu()
+    hasil.innerHTML = catat //nilai waktu sebelum distart
+
+    const resetTimer=()=>{
+        ms=0; second=0; minute = 0; hour=0
+        variabelWaktu()
+        hasil.innerHTML = catat
+        putaran.innerHTML = ''
+    }
+
+    let lapTimer = () =>{
+        putaran.innerHTML += `<br>Putaran ke #${lapKe} : ${catat}<br>`
+        lapKe ++
+    }
+
+    const stopTimer = ()=>{
+        clearInterval(interval)
+    }
+    const startTimer = () =>{
+        
+        interval = setInterval(() => {
+            if(second<10){nolSecond='0'}else{nolSecond=''}
+            if(minute<10){nolMinute='0'}else{nolMinute=''}
+            if(hour<10){nolHour='0'}else{nolHour=''}
+   
+        variabelWaktu()
+        hasil.innerHTML=catat
+        ms++
+       
+        if(ms==100){
+            second++
+            ms = 0
+        }if(second==60){
+            minute ++
+            second=0
+        }if(minute==60){
+            hour++
+            minute=0
+        }
+       
+    }, 10);
+   
+    }
+  
+    lap.onclick=lapTimer
+    reset.onclick=resetTimer
+    stop.onclick=stopTimer
+    start.onclick = startTimer
+</script>
+</html>
