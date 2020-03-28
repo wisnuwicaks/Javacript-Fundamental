@@ -38,14 +38,14 @@ class Fruit extends Produk {
 
 
     let dataProduct = [
-                new Produk(123,"Fast Food",'Burger',1000,5,0),
-                new Produk(234,"Fast Food",'Pizza',2000,5,0),  
-                new Produk(345,"Electronic",'Bur HP',3000,5,0),
-                new Produk(456,"Electronic",'Laptop',4000,5,0),
-                new Produk(567,"Cloth",'Indomaret',5000,5,0),
-                new Produk(678,"Cloth",'Alfamart',6000,5,0),
-                new Produk(789,"Fruit",'Mangga',7000,5,0), 
-                new Produk(890,"Fruit",'Jeruk',8000,5,0)
+                new Produk(1585369534743,"Fast Food",'Burger',1000,5,0),
+                new Produk(1585369960624,"Fast Food",'Pizza',2000,5,0),  
+                new Produk(1585369525682,"Electronic",'Bur HP',3000,5,0),
+                new Produk(1585369867945,"Electronic",'Laptop',4000,5,0),
+                new Produk(1585369907324,"Cloth",'Indomaret',5000,5,0),
+                new Produk(1585369537932,"Cloth",'Alfamart',6000,5,0),
+                new Produk(1585369568436,"Fruit",'Mangga',7000,5,0), 
+                new Produk(1585369088643,"Fruit",'Jeruk',8000,5,0)
                 ]
 
     const selectorId = (id) => {
@@ -129,17 +129,17 @@ class Fruit extends Produk {
         let inputHarga = parseInt(selectorId("inputHarga").value)
         let kategoriProduk = selectorId("kategoriProduk").value
         let inputStok = selectorId("inputStok").value *1
-
+        let newItemId = new Date().getTime()
         let pushParam
       
         if (inputNama !=='' && kategoriProduk !=="Default" && inputStok !=='' && inputStok !==NaN){
-            pushParam = new Produk(Math.floor(Math.random() * 100) +100,kategoriProduk,inputNama,inputHarga,inputStok,0)
+            pushParam = new Produk(newItemId,kategoriProduk,inputNama,inputHarga,inputStok,0)
             dataProduct.push(pushParam)
         }
         else{
             alert("Input anda Salah")
         }
-        alert(inputNama,inputHarga,inputStok,kategoriProduk)
+        alert(inputNama +' Berhasil diinput!')
         renderData()
         selectorId("inputNama").value = ''
         selectorId("inputHarga").value =''
@@ -150,18 +150,20 @@ class Fruit extends Produk {
     const deleteData = (idDiterima,deleteCart) =>{
         let indexProduct
         let indexArrCart
-        for({id} of dataProduct){
-            let {id}=data
+       
+        
+        for(objectKe of dataProduct){
+            let {id}=objectKe
             if(id==idDiterima){
-                indexProduct = dataProduct.indexOf(data)
+                indexProduct = dataProduct.indexOf(objectKe)
             }
         }
 
-        for(data of arrCart){
-            let {id}=data
+        for(objectKe of arrCart){
+            let {id}=objectKe
             if(id==idDiterima)
             {
-                indexArrCart = arrCart.indexOf(data)
+                indexArrCart = arrCart.indexOf(objectKe)
             }
         }
         //jika yang dihapus adalah cart, dataProduct tidak ikut terhapus
@@ -173,7 +175,10 @@ class Fruit extends Produk {
         //jika yang dihapus adalah dataProduct maka cart ikut terhapus
         else{
             dataProduct.splice(indexProduct,1)
+            if(indexArrCart !==undefined){//cek apakah indexArrCart diketahui
             arrCart.splice(indexArrCart,1)
+            }
+            
         }
         renderData()
         renderCart()
