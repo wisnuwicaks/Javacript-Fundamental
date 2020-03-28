@@ -38,14 +38,14 @@ class Fruit extends Produk {
 
 
     let dataProduct = [
-                new Produk(1585369534743,"Fast Food",'Burger',1000,5,0),
-                new Produk(1585369960624,"Fast Food",'Pizza',2000,5,0),  
-                new Produk(1585369525682,"Electronic",'Bur HP',3000,5,0),
-                new Produk(1585369867945,"Electronic",'Laptop',4000,5,0),
-                new Produk(1585369907324,"Cloth",'Indomaret',5000,5,0),
-                new Produk(1585369537932,"Cloth",'Alfamart',6000,5,0),
-                new Produk(1585369568436,"Fruit",'Mangga',7000,5,0), 
-                new Produk(1585369088643,"Fruit",'Jeruk',8000,5,0)
+                new Produk(1585369534743,"Fast Food",'Burger Chicken ',1000,5,0),
+                new Produk(1585369960624,"Fast Food",'Burger Spicy',2000,5,0),  
+                new Produk(1585369525682,"Electronic",'Lenovo',3000,5,0),
+                new Produk(1585369867945,"Electronic",'Samsung',4000,5,0),
+                new Produk(1585369907324,"Cloth",'Zalora',5000,5,0),
+                new Produk(1585369537932,"Cloth",'Adidas',6000,5,0),
+                new Produk(1585369568436,"Fruit",'Mangga Arumanis',7000,5,0), 
+                new Produk(1585369088643,"Fruit",'Mangga Asam',8000,5,0)
                 ]
 
     const selectorId = (id) => {
@@ -228,9 +228,6 @@ class Fruit extends Produk {
     const addToCart = (id) =>{
    
         let item
-    // let item = dataProduct.find ((val) =>val.id==id) //pertanyaan
-        
-    
         dataProduct.forEach((element) => {
             if (element.id==id){
                 item = element
