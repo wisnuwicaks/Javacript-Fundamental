@@ -38,14 +38,14 @@ class Fruit extends Produk {
 
 
     let dataProduct = [
-                new Produk(1585369534743,"Fast Food",'Burger Chicken ',1000,5,0),
-                new Produk(1585369960624,"Fast Food",'Burger Spicy',2000,5,0),  
-                new Produk(1585369525682,"Electronic",'Lenovo',3000,5,0),
-                new Produk(1585369867945,"Electronic",'Samsung',4000,5,0),
-                new Produk(1585369907324,"Cloth",'Zalora',5000,5,0),
-                new Produk(1585369537932,"Cloth",'Adidas',6000,5,0),
-                new Produk(1585369568436,"Fruit",'Mangga Arumanis',7000,5,0), 
-                new Produk(1585369088643,"Fruit",'Mangga Asam',8000,5,0)
+                new Produk(1585369534743,"Fast Food",'Burger Chicken ',45000,5,0),
+                new Produk(1585369960624,"Fast Food",'Burger Beef',40000,5,0),  
+                new Produk(1585369525682,"Electronic",'Lenovo',15000000,5,0),
+                new Produk(1585369867945,"Electronic",'Samsung',10000000,5,0),
+                new Produk(1585369907324,"Cloth",'Zalora',150000,5,0),
+                new Produk(1585369537932,"Cloth",'Adidas',300000,5,0),
+                new Produk(1585369568436,"Fruit",'Mangga Arumanis',45000,5,0), 
+                new Produk(1585369088643,"Fruit",'Mangga Asam',60000,5,0)
                 ]
 
     const selectorId = (id) => {
@@ -54,18 +54,11 @@ class Fruit extends Produk {
     
     function renderData(arr = dataProduct,stringEdit,idTarget=-1){
         let stringData = ''
-        //alert('dirender:'+stringEdit)
-        // arr.forEach(element => {
-        //     for(i=0;i<element.length;i++)
-        //     objAllProduct.push(element[i])
-        // })
        
         arr.forEach(({id,kategori,nama,harga,stok},index) => {
             if (id == idTarget){
                 fieldEdit = stringEdit
-                alert("masuk field edit")
-                // tombolSave = `<input type="button" id="saveDataBtn" value="SAVE" onclick = "saveData(${index})" >`
-                // tombolBuy = `<input type="button" disabled id="addCart" value="BUY" onclick = "addToCart(${id})">`
+                // alert("masuk field edit")
             }
             else{
             fieldEdit = `<td><center>${id}</td> 
@@ -385,7 +378,65 @@ class Fruit extends Produk {
     //====pakai onclick handler======//
     // const elementAddCategory = selectorId('addCategoryBtn')
     // elementAddCategory.onclick = tambahKategori
+    let sorted = false
+    const sortBy = (by)=>{
+    
+        switch (by) {
+        case 'id' :
+            if(sorted==false){
+            dataProduct.sort((a, b) => (a.id > b.id) ? 1 : -1)
+            sorted = true
+            }
+        break
 
+        case 'cat' :
+            if(sorted==false){
+            dataProduct.sort((a, b) => ((a.kategori).toLowerCase() > (b.kategori).toLowerCase()) ? 1 : -1)
+            sorted = true
+            }
+            else{
+                dataProduct.sort((a, b) => ((a.kategori).toLowerCase()< (b.kategori).toLowerCase()) ? 1 : -1)
+                sorted = false
+            }
+        break
+
+        case 'nama' :
+            if(sorted==false){
+            dataProduct.sort((a, b) => (a.nama > b.nama) ? 1 : -1)
+            sorted = true
+            }
+            else{
+                dataProduct.sort((a, b) => (a.nama < b.nama) ? 1 : -1)
+                sorted = false
+            }
+        break
+
+        case 'harga' :    
+            if(sorted==false){
+                dataProduct.sort((a, b) => (a.harga > b.harga) ? 1 : -1)
+                sorted = true
+            }
+            else{
+                dataProduct.sort((a, b) => (a.harga < b.harga) ? 1 : -1)
+                sorted = false
+            }
+            break
+
+        case 'stok' :
+            if(sorted==false){
+                dataProduct.sort((a, b) => (a.stok > b.stok) ? 1 : -1)
+                sorted = false
+            }
+            else{
+                dataProduct.sort((a, b) => (a.stok < b.stok) ? 1 : -1)
+                sorted = false
+            }
+            break
+            }
+
+        renderData(dataProduct)
+        
+    }
     
 
     
