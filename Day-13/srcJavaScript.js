@@ -300,10 +300,10 @@ class Fruit extends Produk {
         coba =selectorId("payment").appendChild(timer)
        
         timeout=30
-        selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+        selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
         interval = setInterval(() => {
             timeout--
-            selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout}`
+            selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
             if(timeout==0){
                 alert('waktu anda habis')
                 clearInterval(interval)
