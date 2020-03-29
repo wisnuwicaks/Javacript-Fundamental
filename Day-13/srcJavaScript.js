@@ -380,60 +380,14 @@ class Fruit extends Produk {
     // elementAddCategory.onclick = tambahKategori
     let sorted = false
     const sortBy = (by)=>{
-    
-        switch (by) {
-        case 'id' :
-            if(sorted==false){
-            dataProduct.sort((a, b) => (a.id > b.id) ? 1 : -1)
-            sorted = true
-            }
-        break
-
-        case 'cat' :
-            if(sorted==false){
-            dataProduct.sort((a, b) => ((a.kategori).toLowerCase() > (b.kategori).toLowerCase()) ? 1 : -1)
+        if(sorted==false){
+            dataProduct.sort((a, b) => (a[by] > b[by]) ? 1 : -1)
             sorted = true
             }
             else{
-                dataProduct.sort((a, b) => ((a.kategori).toLowerCase()< (b.kategori).toLowerCase()) ? 1 : -1)
+                dataProduct.sort((a, b) => (a[by] < b[by]) ? 1 : -1)
                 sorted = false
             }
-        break
-
-        case 'nama' :
-            if(sorted==false){
-            dataProduct.sort((a, b) => (a.nama > b.nama) ? 1 : -1)
-            sorted = true
-            }
-            else{
-                dataProduct.sort((a, b) => (a.nama < b.nama) ? 1 : -1)
-                sorted = false
-            }
-        break
-
-        case 'harga' :    
-            if(sorted==false){
-                dataProduct.sort((a, b) => (a.harga > b.harga) ? 1 : -1)
-                sorted = true
-            }
-            else{
-                dataProduct.sort((a, b) => (a.harga < b.harga) ? 1 : -1)
-                sorted = false
-            }
-            break
-
-        case 'stok' :
-            if(sorted==false){
-                dataProduct.sort((a, b) => (a.stok > b.stok) ? 1 : -1)
-                sorted = false
-            }
-            else{
-                dataProduct.sort((a, b) => (a.stok < b.stok) ? 1 : -1)
-                sorted = false
-            }
-            break
-            }
-
         renderData(dataProduct)
         
     }
