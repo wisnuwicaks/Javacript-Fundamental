@@ -273,9 +273,7 @@ class Fruit extends Produk {
     let  subtotal = 0
     let paymentDetail = ''
     const payment = () =>{
-     
-        // paymentDetail = ''
-        judul = `<h1>Transaction Detail </h1>`
+
         fieldBayar = `<input type="number" id="bayar" placeholder="masukan jumlah uang">`
         arrCart.forEach(({kategori,nama,harga,qty}) => {
             paymentDetail +=`    
@@ -300,23 +298,24 @@ class Fruit extends Produk {
         coba =selectorId("payment").appendChild(timer)
        
         timeout=30
-        selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
+        selectorId("batasWaktu").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
         interval = setInterval(() => {
             timeout--
-            selectorId("paymentResponse").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
+            selectorId("batasWaktu").innerHTML=`Sisa waktu pembayaran :${timeout} detik`
             if(timeout==0){
                 alert('waktu anda habis')
                 clearInterval(interval)
-                selectorId("paymentResponse").innerHTML=timeout
+                selectorId("batasWaktu").innerHTML=timeout
             }
         }, 1000);
        
         selectorId("payment").innerHTML=paymentDetail
     }
+
     let pay =0
     const payProcess = () =>{
         clearInterval(interval)
-        selectorId("paymentResponse").innerHTML='<p>Selesai</p>'
+        selectorId("batasWaktu").innerHTML='<p>Selesaikan Pembayaran</p>'
         
         let transaksiSelesai = false
         pay += selectorId("pay").value*1
@@ -340,7 +339,9 @@ class Fruit extends Produk {
             pay = 0
             arrCart=[]
             renderCart()
-            selectorId("payment").innerHTML='<p><strong>Transaksi selesai</p>'
+            selectorId("payment").innerHTML='<p><strong>=========Transaksi selesai==========</p>'
+            selectorId("batasWaktu").innerHTML='<p><strong>Terimakasih Sudah Berbelanja &#128512</p>'
+            paymentDetail = ''//kosongkan detail belanjaan stelah selesai
             }
     }
 
@@ -360,8 +361,8 @@ class Fruit extends Produk {
         addCategoryOption2 = document.createElement('option')
         addCategoryOption2.appendChild(textNode2)
 
-        listFilterKategori.appendChild(addCategoryOption1)
-        listKategoriProduk.appendChild(addCategoryOption2)
+        listFilterKategori.appendChild(addCategoryOption1)//untuk filter kateogori
+        listKategoriProduk.appendChild(addCategoryOption2)//untuk option kategori pada input data
         let categoryAtFilter = listFilterKategori.getElementsByTagName('option')
         let categoryAtInput = listKategoriProduk.getElementsByTagName('option')
         categoryAtFilter[categoryAtFilter.length-1].setAttribute("value",tambahKategori)
