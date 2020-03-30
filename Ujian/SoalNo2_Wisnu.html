@@ -12,26 +12,42 @@
         let min = ''
         let arr = []
         inputPertama = parseInt(prompt(`Masukkan inputan`))
-        max=inputPertama
-        min=inputPertama
+        
         if(!isNaN(inputPertama)){
             arr.push(inputPertama)
+            max=inputPertama
+            min=inputPertama
         do {
             input = parseInt(prompt(`Masukkan input :`))
             if(isNaN(input)){
                 break
             }
-            arr.push(input)
+            if(input<arr[0]){
+            arr.unshift(input)
+            }
+            if(input>arr[arr.length-1]){
+                arr.push(input)
+            }
+            if(input>arr[0]&&input<arr[arr.length-1]){
+              
+                temp = arr[arr.length-1]
+                arr[arr.length] = temp
+                arr[arr.length-2]=input
+            }
             if(input>max){
                 max=input
             }
             if(input<min){
                 min=input
             }
+            
         }
         while(typeof(input) ==='number')
     }
-  
+    console.log(arr)
+    console.log(`Nilai tertinggi :${max}`)
+    console.log(`Nilai terendah :${min}`)
+
     </script>
 </body>
 </html>
