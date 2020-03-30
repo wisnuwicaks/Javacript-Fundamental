@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let max = ''
+        let min = ''
+        let arr = []
+        inputPertama = parseInt(prompt(`Masukkan inputan`))
+        max=inputPertama
+        min=inputPertama
+        if(!isNaN(inputPertama)){
+            arr.push(inputPertama)
+        do {
+            input = parseInt(prompt(`Masukkan input :`))
+            if(isNaN(input)){
+                break
+            }
+            arr.push(input)
+            if(input>max){
+                max=input
+            }
+            if(input<min){
+                min=input
+            }
+        }
+        while(typeof(input) ==='number')
+    }
+  
+    </script>
+</body>
+</html>

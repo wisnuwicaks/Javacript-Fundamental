@@ -11,7 +11,7 @@ const traingle =(baris)=>{
     }
     return arrUtama
 }
-console.log(traingle(6))
+console.log(traingle(10))
 
 ////========SegitigaGanjil===========//
 // const traingleGanjil =(baris)=>{
@@ -34,7 +34,7 @@ console.log(traingle(6))
 // //========Array Fibonacci===========//
 // const triangleFibo = (baris) =>{
 // arr = [1,1,2]
-// for(i=3;i<10000;i++){ //membuat baris fibo
+// for(i=3;i<10000;i++){ //membuat baris fibonacci
 // arr[i] = arr[i-1]+arr[i-2]
 // }
 // arrHasil = []
@@ -43,10 +43,10 @@ console.log(traingle(6))
 // }
 // return arrHasil
 // }
-// console.log(triangleFibo(5))
+// console.log(triangleFibo(7))
 
 
-////========Segitga Pascal===========//
+// //========Segitga Pascal===========//
 // const trianglePascal = (baris) =>{
 // arr1 =  [1]
 // arr2 = [1,1]
@@ -65,4 +65,4 @@ console.log(traingle(6))
 //     }
 //     return arrHasil
 // }
-// console.log(trianglePascal(5))
+// console.log(trianglePascal(9))

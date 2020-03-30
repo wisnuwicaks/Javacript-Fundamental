@@ -151,10 +151,19 @@
 // console.log(jumlah(2,2))
 
 
-var person = {fname:"John", lname:"Doe", age:25}; 
+// var person = {fname:"John", lname:"Doe", age:25}; 
   
-var text = "";
-var x;
-for (x in person) {
-  text += person[x] + " ";
-}
+// var text = "";
+// var x;
+// for (x in person) {
+//   text += person[x] + " ";
+// }
+
+// arr = [1,2,3,3]
+
+// a = arr.findIndex(val => val==3)
+// console.log((a))
+
+a = 0
+let b =''
+console.log(b<a)
